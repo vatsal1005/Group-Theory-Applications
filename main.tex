@@ -1,0 +1,1127 @@
+\documentclass{beamer}
+%\usetheme{Berkeley}
+% \usetheme{Berlin}
+\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Madrid}
+%\usecolortheme{beaver}
+\usepackage{amsmath,amssymb,amsfonts,booktabs,empheq,lmodern,mathtools,nccmath,physics,pgfplots}
+\usepackage{hyperref}
+%\hypersetup{colorlinks=true,linkcolor={blue}}
+\usepackage{siunitx}
+\sisetup{load-configurations = abbreviations}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepgfplotslibrary{external}
+\tikzexternalize
+\title{Group Theory Applications}
+\subtitle{Summer Improvement Program}
+\author{Vatsal}
+\institute[IIT Bombay]{Department of Chemistry \\
+Indian Institute of Technology Bombay}
+\date{July 5 - 19, 2021}
+
+\newtheorem{proposition}{Proposition}
+
+\newcounter{savedenum}
+\newcommand*{\saveenum}{\setcounter{savedenum}{\theenumi}}
+\newcommand*{\resume}{\setcounter{enumi}{\thesavedenum}}
+
+\definecolor{titles}{rgb}{0.4,0.2,0.6}
+\definecolor{bolds}{rgb}{0.0,0.4,0.6}
+\definecolor{italics}{rgb}{0.9,0.3,0.6}
+\setbeamercolor{block title}{fg=titles}
+\newcommand\boldtext[1]{\textcolor{bolds}{\textbf{#1}}}
+\newcommand\italictext[1]{\textcolor{italics}{\textit{#1}}}
+
+\setbeamertemplate{section in toc}{\hspace*{7em}\inserttocsection}
+
+\AtBeginSection[]
+{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section*{Outline}
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Unit I - Introduction to Abstract Algebra}
+
+\begin{frame}{Set}
+    \begin{definition}
+        A \boldtext{set} is a collection of objects or entities (referred to as \italictext{elements}).
+    \end{definition}
+    Examples: $\{\}; \{\star,\bullet,\wedge\}$, where the elements are arbitrary; $\{x \mid x \in \mathbb{Z}\cup\mathbb{Q}\}$. 
+    \begin{definition}
+        $B$ is a \boldtext{subset} of $A$ if all elements of $B$ also belong to $A$.
+    \end{definition}
+    Example: For $A=\{1,2\}$, $B (\subseteq A)$ can be $\{1,2\},\{1\},\{2\}$, or $\{\}$.
+    \begin{definition}
+        A \boldtext{Cartesian product} between two sets $A$ and $B$ is a set of all the ordered pairs such that one element in the pair belongs to $A$, while the other to $B$, i.e. $A\times B\coloneqq\{(a,b)\mid a\in A,$ $b\in B\}$.
+    \end{definition}
+    \begin{align*}
+        \text{Examples: } & \text{For $A=\{1,2\},B=\{2,1\},A\times B=\{(1,2),(1,1),(2,2),(2,1)\}$;}\\ & \text{$\mathbb{R}\times\mathbb{R}=\{(x,y)\mid x,y\in\mathbb{R}\}$}.
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Vector Space}
+    \begin{definition}
+        A \boldtext{vector space} is a set $V$ of vectors, adorned with an additional feature of allowing two operations, namely, vector addition ($+$) and scalar multiplication ($\cdot$), satisfying the following vector axioms for vectors $\mathbf{u},\mathbf{v},\mathbf{w} \in {V}$ and scalars $a,b \in {F}$, (where $F=\mathbb{R}, \mathbb{C},$ etc.) :
+        \begin{itemize}
+            \item \italictext{Commutativity} of vector addition: $\mathbf{u}+\mathbf{v}=\mathbf{v}+\mathbf{u}$ ,
+            \item \italictext{Associativity} of vector addition: $\mathbf{u}+(\mathbf{v}+\mathbf{w})=(\mathbf{u}+\mathbf{v})+\mathbf{w}$ ,
+            \item \italictext{Identity} for vector addition: $\exists \mathbf{ 0}\in V \text{ s.t. } \mathbf{0}+\mathbf{v}=\mathbf{v}=\mathbf{v}+\mathbf{0} \text{,  } \forall \mathbf{ v}\in V$,
+            \item \italictext{Inverse} for vector addition: $\exists \text{ }(-\mathbf{v})\in \textit{V} \text{ s.t. } (-\mathbf{v})+\mathbf{v}=\mathbf{0}=\mathbf{v}+(-\mathbf{v})$,
+            \item \italictext{Closure} under both the operations: $a\cdot\mathbf{v}\in V$ and $\mathbf{v}+\mathbf{w}\in V$ ,
+            \item \italictext{Distributivity} over vector addition: $a\cdot(\mathbf{v}+\mathbf{w})=a\cdot\mathbf{v}+a\cdot\mathbf{w}$ ,
+            \item \italictext{Distributivity} over scalar addition: $(a+b)\cdot\mathbf{v}=a\cdot\mathbf{v}+b\cdot\mathbf{v}$ ,
+            \item \italictext{Associativity} of scalar multiplication: $(ab)\cdot\mathbf{v}=a\cdot(b\cdot\mathbf{v})$ ,
+            \item \italictext{Identity} for scalar multiplication: $\exists \text{ } 1 \in F \text{ such that } 1\cdot\mathbf{v}=\mathbf{v}$ .
+        \end{itemize}
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Examples of a vector space}
+    \begin{itemize}
+        \item $\mathbb{R}\coloneqq\left\{x_1,x_2,\dots,x_n,\dots\right\}$ ;
+        \item $\mathbb{C}$ ;
+        \item $\mathbb{R}^n\coloneqq\left\{\mathbf{x}\mid\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}\right\}$ , or ,  $\left\{\mathbf{x}\mid\mathbf{x} =\begin{bmatrix} x_1 & x_2 & \cdots & x_n \end{bmatrix}\right\}$ , etc. ;
+        \item $\mathbb{R}^{m\times n}\coloneqq\left\{\mathbf{v}\mid\mathbf{v} = \begin{pmatrix}
+            x_{11} & x_{12} & \cdots & x_{1n} \\
+            x_{21} & x_{22} & \cdots & x_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            x_{m1} & x_{m2} & \cdots & x_{mn}
+        \end{pmatrix}\right\}$ ;
+        \item \italictext{Function space}: The set of functions $\{f\mid f:V\xrightarrow{}W\}$ , where ${V}$ and ${W}$ are vector spaces (as defined) and the operations (vector addition and scalar multiplication) are defined pointwise ;
+        \item \italictext{Dual space}, $V^*\coloneqq\{g\mid g:V\xrightarrow{}\textit{F }\}$ , \textit{g} is called a \italictext{functional} ;
+        \item $C^n[a,b]$ : The set of all real-valued $n$ times continuously differentiable functions defined on the interval $[a,b]$ .
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linear Subspace}
+    \begin{definition}
+        A \boldtext{linear subspace} $W$ is a non-empty subset of vector space $V$, adorned with the same operations, vector addition ($+$) and scalar multiplication ($\cdot$), which satisfy the same vector axioms, i.e. in addition to the axioms for $V$, for vectors $\mathbf{u},\mathbf{v} \in {W}$ $(\subseteq V)$ and scalars $a,b \in {F}$, (where $F=\mathbb{R}, \mathbb{C},$ etc.) :
+        \begin{itemize}
+            \item $a\cdot\mathbf{u}+b\cdot\mathbf{v}\in W$ .
+        \end{itemize}
+    \end{definition}
+    Examples:
+    \begin{itemize}
+        \item Set of all vectors with second component $0$, forms a subspace of $\mathbb{R}^3$,
+        \item Set of all real symmetric $n\times n$ matrices forms a subspace of $\mathbb{R}^{n\times n}$,
+        \item $C^r[a,b]$ is a subspace of $C^s[a,b]$ for all $r>s$,
+        \item \italictext{Null space (or kernel)} of a matrix $A_{m\times n}$ : Solution space $\mathbf{x}\in\mathbb{R}^n$ of the homogenous system $A\mathbf{x}=\mathbf{0}$ is a subspace of $\mathbb{R}^n$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Inner Product Space}
+    \begin{definition}
+        A vector space $V$ is called an \boldtext{inner product space} if it admits a map $\langle\cdot,\cdot\rangle:V\times V\to F$, called an \italictext{inner product}, satisfying the following axioms for vectors $\mathbf{u},\mathbf{v},\mathbf{w} \in V$ and scalars $a,b \in F$, (where $F=\mathbb{R}, \mathbb{C},$ etc.) :
+        \begin{itemize}
+            \item \italictext{Linearity} in the first argument: $\langle a\cdot\mathbf{u}+b\cdot\mathbf{v},\mathbf{w}\rangle=a\langle \mathbf{u},\mathbf{w}\rangle+b\langle\mathbf{v},\mathbf{w}\rangle$ ,
+            \item \italictext{Conjugate symmetry} or \italictext{Hermitian symmetry}: $\langle\mathbf{u},\mathbf{v}\rangle = \overline{\langle \mathbf{v},\mathbf{u}\rangle}$ ,
+            \item \italictext{Positive definiteness}: $\langle\mathbf{v},\mathbf{v}\rangle>0$, if $\mathbf{v}\neq\mathbf{0}$ .
+        \end{itemize}
+    \end{definition}
+    Alternatively, an inner product can be written with linearity in the second argument and conjugate linearity (antilinearity) in the first argument, as is the case with Dirac's bra-ket notation, where $\langle\mathbf{v},\mathbf{w}\rangle=\braket{\mathbf{w}}{\mathbf{v}}$.
+\end{frame}
+
+\begin{frame}{Direct Sum of matrices}
+    \begin{definition}
+        \boldtext{Direct sum} $\oplus$ of matrices $\mathbf{A}_{m\times n}$ and $\mathbf{B}_{p\times q}$ is an ($m+p$)$\times$($n+q$) matrix, defined as, $\mathbf{A}_{m\times n}\oplus\mathbf{B}_{p\times q}\coloneqq
+        \begin{pmatrix}
+            \mathbf{A}_{m\times n} & \mathbf{O}_{m\times q} \\
+            \mathbf{O}_{p\times n} & \mathbf{B}_{p\times q}
+        \end{pmatrix}$, where $\mathbf{O}$ is a null matrix.
+    \end{definition}
+    The direct sum of square matrices is thus, a square block diagonal  matrix.\\
+    Elements in the direct sum of vector spaces $V$ and $W$ of matrices can be represented as direct sum of matrices $\mathbf{v}\oplus\mathbf{w}$, such that $\mathbf{v}\in V$, $\mathbf{w}\in W$.
+\end{frame}
+
+\begin{frame}{Direct Product of matrices}
+    \begin{definition}
+        \boldtext{Direct product} $\otimes$ of matrices $\mathbf{A}_{m\times n}$ and $\mathbf{B}_{p\times q}$ (or \italictext{Kronecker product}) is an ($mp$)$\times$($nq$) matrix, defined as, $\mathbf{A}_{m\times n}\otimes\mathbf{B}_{p\times q}\coloneqq
+        \begin{pmatrix}
+            a_{11}\mathbf{B} & \cdots & a_{1n}\mathbf{B} \\
+            \vdots & \ddots & \vdots \\
+            a_{m1}\mathbf{B} & \cdots & a_{mn}\mathbf{B}
+        \end{pmatrix}$.
+    \end{definition}
+    The Kronecker product $V\otimes W$ between vector spaces $V$ and $W$ of matrices is a type of tensor product (called \italictext{tensor direct product}). It is a vector space of tensors $\mathbf{v}\otimes\mathbf{w}$, such that $\mathbf{v}\in V$, $\mathbf{w}\in W$.\\
+    Example: Let orbital angular momentum operator $\mathbf{L}$ and spin angular momentum operator $\mathbf{S}$ belong to state spaces $\mathcal{H}_1$ and $\mathcal{H}_2$, respectively. The total angular momentum operator $\mathbf{J}$ then belongs to the direct product space $\mathcal{H}=\mathcal{H}_1\otimes\mathcal{H}_2$ and is given by $\mathbf{J}=\mathbf{L}\otimes\mathbf{I}_2+\mathbf{I}_1\otimes\mathbf{S}$, where $\mathbf{I}_1$ and $\mathbf{I}_2$ are identity operators in $\mathcal{H}_1$ and $\mathcal{H}_2$, respectively. For repeated use, an abridged notation of $\mathbf{J}=\mathbf{L}+\mathbf{S}$ is adopted once it is understood as to which operator resides in which space.
+\end{frame}
+
+\begin{frame}{Group}
+    \begin{definition}
+        A \boldtext{group}, denoted as $(G,\star )$, is a set $G$ of elements, which admits a binary operation $\star$ (called the \italictext{group operation}), satisfying the following group axioms for elements $a, b, c \in G$ :
+        \begin{itemize}
+            \item \italictext{Closure}: $a\star b\in G$ ,
+            \item \italictext{Associativity}: $a\star(b\star c)=(a\star b)\star c$ ,
+            \item \italictext{Identity}: $\exists \text{ } e\in G \text{ such that } e\star a=a=a\star e \text{,  } \forall \text{ } a\in G$ ,
+            \item \italictext{Inverse}: $\exists \text{ } a^{-1}\in G \text{ such that } a^{-1}\star a=e=a\star a^{-1}$ .
+        \end{itemize}
+    \end{definition}
+    For multiplicative groups, the group operation (multiplication, $\cdot$) is implied by mere juxtaposition of elements, i.e. $a\cdot b\equiv ab$.
+\end{frame}
+
+\begin{frame}{Examples of a group}
+    \begin{itemize}
+        \item $(\mathbb{Z},+)$: set of integers under addition,
+        \item $(\mathbb{R},+)$: set of real numbers under addition,
+        \item $(\mathbb{Q},+)$: set of rational numbers under addition,
+        \item $(\mathbb{R}\backslash \{0\},\times)$: set of non-zero real numbers under multiplication,
+        \item $(\mathbb{Q}\backslash \{0\},\times)$: set of non-zero rational numbers under multiplication,
+        \item $(\mathbb{R}^+,\times)$: set of positive real numbers under multiplication,
+        \item $(\mathbb{Q}^+,\times)$: set of positive rational numbers under multiplication,
+        \item $(V,+)$, where set $V$ forms a vector space and $+$ is vector addition, 
+        \item $(k\mathbb{Z,+})$: set of integer multiples of $k\in\mathbb{Z}$ under addition,
+        \item $\mathbf{GL}(n,F)$: set of $n\times n$ invertible matrices under matrix multiplication,
+        \item $\mathbf{GL}(V)$: set of all bijective linear transformations $V\xrightarrow{}V$ under function composition $\circ$,
+        \item $\mathbf{U}(n)$: set of $n\times n$ unitary matrices under matrix multiplication,
+        \item $\mathbf{U}(V)$: set of all unitary transformations $V\xrightarrow{}V$ (i.e. inner product preserving bijections) under function composition $\circ$ .
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Subgroup}
+    \begin{definition}
+        $(H,\star)$ is called a \boldtext{subgroup} if $H$ is a subset of set $G$ that forms a group $(G,\star )$, such that $H$ too forms a group under the same group operation $\star$.
+    \end{definition}
+    A subgroup-group relation is denoted by the symbol $\leq$ .\\
+    Examples:
+    \begin{itemize}
+        \item $(\mathbb{Z},+)$ is a subgroup of $(\mathbb{Q},+)\leq(\mathbb{R},+)\leq(\mathbb{C},+)$,
+        \item $(\mathbb{Q}^+,\times)$ is a subgroup of $(\mathbb{R}^+,\times)$,
+        \item A linear subspace of a vector space $V$ is a subgroup of $(V,+)$,
+        \item $\mathbf{SL}(n,F)$: subgroup of $\mathbf{GL}(n,F)$, of matrices with unit determinant,
+        \item $\mathbf{U}(n)$: subgroup of $\mathbf{GL}(n,\mathbb{C})$,
+        \item $\mathbf{SU}(n)$: subgroup of $\mathbf{U}(n)$ and $\mathbf{SL}(n,\mathbb{C})$, of matrices with $\mathbf{det}=1$,
+        \item $\mathbf{O}(n)$: set of $n\times n$ orthogonal matrices forms a subgroup of $\mathbf{GL}(n,\mathbb{R})$,
+        \item $\mathbf{SO}(n)$: subgroup of $\mathbf{O}(n)$ and $\mathbf{SL}(n,\mathbb{R})$, of matrices with $\mathbf{det}=1$.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Direct Product of groups}
+    \begin{definition}
+        \boldtext{Direct product} of groups $(G,\star)$ and $(H,\bullet)$ is the group $(G\times H,\ast)$, where the underlying set is given by the Cartesian product $G\times H$ and the binary operation on the direct product group is defined component-wise:
+        \begin{itemize}
+            \item $(g_1,h_1)\ast(g_2,h_2)=(g_1\star g_2,h_1\bullet h_2)$, $\forall$ $g_1,g_2\in G$, $h_1,h_2\in H$.
+        \end{itemize}
+    \end{definition}
+    \begin{description}
+        \item[Exercise] Verify that the operation $\ast$ on the set $G\times H$ satisfies the group axioms. 
+    \end{description}
+    Example: $(\mathbb{R}\times\mathbb{R},+)$, set of 2-component vectors under vector addition.
+\end{frame}
+
+\begin{frame}{Exercise 1}
+    \begin{enumerate}
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item Set containing just the identity element for vector addition, along with that operation and scalar multiplication, forms a vector space. \textbf{(T)}
+            \item Set containing no element, along with vector addition and scalar multiplication, forms a vector space. \textbf{(F)}
+            \item Set of integers does not form a group under multiplication. \textbf{(T)}
+            \item Set of real (or rational) numbers does not form a group under multiplication. \textbf{(T)}
+            \item Set of positive real (or rational) numbers does not form a group under addition. \textbf{(T)}
+            \item Set of non-zero real (or rational) numbers does not form a group under addition. \textbf{(T)}
+            \item Set of complex numbers does not form a group under addition. \textbf{(F)} 
+            \item Set of non-zero complex numbers does not form a group under multiplication. \textbf{(F)}
+            \item Set of non-zero real numbers forms a group under division. \textbf{(F)}
+            \item Set containing just the identity element for a binary operation forms a group under that operation. \textbf{(T)}
+            \item Set containing no element forms a group under any operation. \textbf{(F)}
+        \end{itemize}
+        \saveenum
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Exercise 1 (contd.)}
+    \begin{enumerate}
+        \resume
+        \item Prove the following:
+        \begin{itemize}
+            \item Any line passing through the origin of the plane $\mathbb{R}^2$ is its subspace.
+            \item $\mathbb{R}$ is not a subspace of $\mathbb{C}$.
+            \item The inner product $\langle\mathbf{v},\mathbf{v}\rangle$ is a real number for all $\mathbf{v}$.
+            \item An inner product satisfies conjugate linearity in the second argument.
+            \item Operators residing in different spaces commute.
+            \item Not every element of an arbitrary tensor product of vector spaces, $V\otimes W$, may be expressible as a tensor product of vectors, $\mathbf{v}\otimes\mathbf{w}$, such that vectors $\mathbf{v}\in V$, $\mathbf{w}\in W$.
+            \item The identity element of the group is unique.
+            \item The inverse element for each element of the group is unique.
+            \item An intersection of subgroups of a group is also its subgroup.
+            \item A union of subgroups of a group is not necessarily its subgroup.
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Unit II - Key Elements of Group Theory}
+
+\begin{frame}{Linear Span and Basis}
+    \begin{definition}
+        Given a vector space $V$ and a set of vectors $S\coloneqq\left\{\mathbf{v}_1,\dots,\mathbf{v}_n\right\}$, the \boldtext{linear span} of set $S$, denoted $\mathbf{span}(S)$, is the set of all finite linear combinations of the elements of $S$, i.e. for vectors $\mathbf{v}_i \in {V}$ and scalars $a_i \in {F}$ (where $F=$ $\mathbb{R}, \mathbb{C},$ etc.), $\mathbf{span}(S)=\left\{\sum\limits_{i=1}^{k}a_i\cdot\mathbf{v}_i\mid\mathbf{v}_i \in {S},\text{ }k\in\mathbb{N}\right\}$.
+    \end{definition}
+    \vspace{-0.05em}
+    The linear span of a set of vectors is therefore a vector space (particularly, a linear subspace $W$ of $V$) and $S\subseteq W$.
+    \vspace{-0.05em}
+    \begin{lemma}
+        $\mathbf{span}(S)$ is the smallest subspace of $V$ that contains the spanning set $S$.
+    \end{lemma}
+    \vspace{-0.05em}
+    $V$ is said to have been spanned by $S$ and $S$ is called a \italictext{generating set} of $V$.
+    \begin{definition}
+        Smallest possible generating set (or a minimal spanning set) $\{\mathbf{e}_i\}$ is called a \boldtext{basis}, i.e. set $\{\mathbf{e}_i\}$ is a maximal linearly independent set of \italictext{basis vectors}.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Generating Set of a group and Cyclic Group}
+    \begin{definition}
+        A \boldtext{generating set of a group} is a subset $S$ of group $G$ such that each element of $G$ can be expressed as some combination (under the group operation $\star$) of finitely many elements of $S$ and their inverses.
+    \end{definition}
+    $G$ is said to be \italictext{generated} by $S$ and the elements of $S$ are called \italictext{generators}.\\
+    To signify the same, $G$ is denoted as $\langle S\rangle$.\\
+    By convention, $\langle\varnothing\rangle$ is taken to be the trivial group $(\{e\},\star)$.\\
+    For a finite generating set $S$, $G$ is said to have been \italictext{finitely generated}.
+    \begin{definition}
+        A \boldtext{cyclic group} $C$ is a group generated by a single element $g$. Therefore, $\forall$ $k\in\mathbb{Z}$,  $\exists$ $c\in C$ such that $c=g^k$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Normal Subgroup}
+    \begin{definition}
+        Two elements $a,b\in G$ are \boldtext{similar} (or \italictext{conjugate} to each other) if there exists $g\in G$, such that $a=gbg^{-1}$ and the relation is called a \boldtext{similarity transformation} (or \italictext{conjugacy}).
+    \end{definition}
+    \begin{definition}
+        A subgroup $gHg^{-1}\leq G$ is called a \boldtext{conjugate subgroup} of the subgroup $H\leq G$, defined for a fixed $g\in G$ as $gHg^{-1}\coloneqq\{ghg^{-1} \mid h \in H\}$.
+    \end{definition}
+    \begin{definition}
+        A subgroup $N\leq G$ is called a \boldtext{normal subgroup} (also called \italictext{invariant or self-conjugate subgroup}) of $G$ iff   $\forall$ $g\in G$, $gNg^{-1}=N$ and is denoted as $N\vartriangleleft G$.
+    \end{definition}
+    \begin{definition}
+        A \boldtext{simple group} $G$ is a group whose only normal subgroups are $\{e\}$ and $G$.  
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Conjugacy Class and Center of a group}
+    \begin{definition}
+        In a group $G$, the \boldtext{conjugacy class} of an element $x\in G$ is defined as $\text{cl}_G(x)\coloneqq\{gxg^{-1} \mid g \in G\}$, i.e. the set of all elements in $G$, which are conjugate to $x$. 
+    \end{definition}
+    \begin{definition}
+        The \boldtext{center} of a group $G$ is the set $Z(G)$ of all the elements that commute with every element of $G$, i.e. $Z(G)=\{z\in G \mid zgz^{-1}=g$  $\forall$ $g\in G\}$.
+    \end{definition}
+    Equivalently, the center is the set of elements, which are the only elements in their respective conjugacy classes, i.e. $x\in Z(G)\iff\text{cl}_G(x)=\{x\}$.
+    \begin{theorem}
+        The center of a group $G$ is its normal subgroup, $Z(G)\vartriangleleft G$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Abelian Group}
+    \begin{definition}
+        An \boldtext{abelian group} $(G,\star )$ is a group in which the elements of set $G$ commute under the binary operation $\star$ , i.e. in addition to the group axioms, for elements $a, b \in G$, following is satisfied :
+        \begin{itemize}
+            \item \italictext{Commutativity}: $a\star b=b\star a$ .
+        \end{itemize}
+    \end{definition}
+    For an abelian group $G$, $Z(G) = G$.
+    \begin{definition}
+        \boldtext{Direct sum} of abelian groups $(G,\star)$ and $(H,\bullet)$ is the same as their direct product, i.e. $G\oplus H=(G\times H,\ast)$, such that $\ast$ is defined component-wise:
+        \begin{itemize}
+            \item $(g_1,h_1)\ast(g_2,h_2)=(g_1\star g_2,h_1\bullet h_2)$, $\forall$ $g_1,g_2\in G$, $h_1,h_2\in H$.
+        \end{itemize}
+    \end{definition}
+    \begin{description}
+        \item[Exercise] Verify that the operation $\ast$ on the set $G\times H$ is commutative. 
+    \end{description}
+\end{frame}
+
+\begin{frame}{Order}
+    \begin{definition}
+        \boldtext{Order of an element} $g\in G$ is the smallest positive integer $m$ such that $g^m\equiv g\star g\star g\star\dots\text{($m$ times)}=e$, where $e$ is the identity element of $G$. 
+    \end{definition}
+    If no such $m$ exists the order of the element is said to be infinite.
+    \begin{definition}
+        \boldtext{Order of a group} $G$, denoted by $\lvert G\rvert$, is the number of elements in its set.
+    \end{definition}
+    If $\lvert G\rvert$ is finite, $G$ is called a \italictext{finite group}.
+    \begin{definition}
+        \boldtext{Conjugacy class order} is the number of elements in a conjugacy class.
+    \end{definition}
+    \begin{definition}
+        \boldtext{Class number} of a group is the number of distinct conjugacy classes.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Lagrange's Theorem}
+    \begin{theorem}
+        The order of every subgroup of a finite group $G$ is a factor of $\lvert G\rvert$.
+    \end{theorem}
+    \begin{corollary}
+        The order of every element of a finite group $G$ is a factor of $\lvert G\rvert$.
+    \end{corollary}
+    \begin{corollary}
+        $\forall$ $g\in G$, $g^{\lvert G\rvert}=e$.
+    \end{corollary}
+    \begin{corollary}
+        Every group $G$ of prime order $(\text{i.e. }\lvert G\rvert\text{ being prime})$ is cyclic, hence simple.
+    \end{corollary}
+    \begin{corollary}
+        The order of every conjugacy class of a finite group $G$ is a factor of $\lvert G\rvert$.
+    \end{corollary}
+\end{frame}
+
+\begin{frame}{Sylow Theorems}
+    \begin{theorem}
+        For a prime number $p$ and a finite group $G$, if $\lvert G\rvert=p^nq$ $(p$ doesn't divide $q)$, there exists a subgroup of $G$, of order $p^k$ for each $k\in\{1,\dots,n\}$.
+    \end{theorem}
+    Subgroup of order $p^n$ is known as a Sylow $p$-subgroup of $G$.\\
+    There exists a subgroup of $G$, of order $q$, an example of a Hall subgroup.\\
+    If $q=1$, $G$ is called a $p$-group and $\forall g\in G$, order $\lvert g\rvert$ is some power of $p$.
+    \begin{corollary}[Cauchy's theorem]
+        For a finite group $G$, if $p$ is a prime factor of $\lvert G\rvert$, there exists an element (and thus a cyclic subgroup generated by this element) of order $p$ in $G$.
+    \end{corollary}
+    \begin{theorem}
+        For a prime number $p$, all Sylow $p$-subgroups are conjugate to each other.
+    \end{theorem}
+    \begin{theorem}
+        Number $n_p$ of Sylow $p$-subgroups of $G$ divides $\lvert G\rvert$, while $p$ divides $(n_p-1)$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Exercise 2}
+    \begin{enumerate}
+        \item Prove the following:
+        \begin{itemize}
+            \item A cyclic group is an abelian group of the same order as its generator.
+            \item A group with exactly 2 subgroups is a cyclic group of prime order.
+            \item A simple abelian group is a cyclic group of prime order.
+            \item A non-trivial simple cyclic group of prime order has exactly 2 subgroups.
+            \item In any group, the identity element is the only element in its class.
+            \item In an abelian group, each element is the only element in its class.
+            \item Every subgroup of an abelian group is a normal subgroup.
+            \item Every cyclic group of prime order is a simple group.
+            \item Elements that belong to the same conjugacy class have the same order.
+            \item Given $\text{cl}_G(a)=\text{cl}_G(b)$, it holds that $\text{cl}_G(a^m)=\text{cl}_G(b^m)$, where $m\in\mathbb{Z}$.
+            \item For $a,b\in G$, the order of elements $\lvert ab^{-1}\rvert=\lvert b^{-1}a\rvert=\lvert a^{-1}b\rvert=\lvert ba^{-1}\rvert$.
+            \item For $a,b\in G$, if order of element $a$ (or $b$) is $2$, $\lvert ab^{-1}\rvert=\lvert ab\rvert=\lvert ba\rvert$.
+        \end{itemize}
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item Not all elements are conjugate to themselves. \textbf{(F)}
+            \item Every group is a normal subgroup of itself. \textbf{(T)}
+            \item Every group has the trivial group as a normal subgroup. \textbf{(T)}
+            \item Conjugacy classes of a group can be overlapping sets. \textbf{(F)}
+        \end{itemize}
+        \saveenum
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Exercise 2 (contd.)}
+    \begin{enumerate}
+        \resume
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item Any group can be partitioned into its classes. \textbf{(T)}
+            \item Any subgroup of $G$ can be partitioned into the classes of $G$. \textbf{(F)}
+            \item A normal subgroup of $G$ can be partitioned into the classes of $G$. \textbf{(T)}
+            \item If $H\leq G$, $N\vartriangleleft G$ and $N\leq H$, then $N\vartriangleleft H$. \textbf{(T)}
+            \item The center of a group is not necessarily abelian. \textbf{(F)}
+            \item The center of a non-abelian simple group is trivial. \textbf{(T)}
+            \item For a prime number $p$ and a finite group $G$, if $\lvert G\rvert=p^nq$ $(p$ doesn't divide $q)$, there exists an element (and thus a cyclic subgroup generated by this element) in $G$, of order $p^k$ for each $k\in\{1,\dots,n\}$. \textbf{(T)}
+            \item For a prime number $p$, a subgroup $H$ of $G$, of order $\lvert H\rvert=p^k$ is a subgroup of some Sylow $p$-subgroup of $G$. \textbf{(T)}
+            \item For a prime number $p$, a normal subgroup $N$ of $G$, of order $\lvert N\rvert=p^k$ is a subgroup of every Sylow $p$-subgroup of $G$. \textbf{(T)}
+            \item If $n_p=1$, the Sylow $p$-subgroup of a group is a normal subgroup. \textbf{(T)}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Unit III - Inheritance of Group Structure}
+
+\begin{frame}{Cayley Table}
+    A Cayley table is a succinct representation of the group structure.
+    \begin{definition}
+        A \boldtext{Cayley table} is a square table used to describe the structure of a finite group by arranging the group elements following the group operation $\star$.
+    \end{definition}
+    Convention: An element (say $a$) that labels a row appears before an element (say $b$) that labels a column, in the corresponding entry of the table, i.e. as the product $a\star b$ (instead of an alternate convention of $b\star a$).
+    \begin{theorem}
+        Each row and each column in a Cayley table lists every group element exactly once. This is known as the rearrangement theorem.
+    \end{theorem}
+    Caution: A Cayley table doesn't admit associativity as an axiom for its construction. Therefore, any structure (formed by the elements of a set under the defined operations) obtained through the application of the rearrangement theorem must still be explicitly checked for associativity before assuming it to be a group structure.
+\end{frame}
+
+\begin{frame}{Examples of a Cayley table}
+    \centering
+    \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|c|}
+            \hline\textbf{G} & \textbf{\textit{a}} & \textbf{\textit{b}} & \textbf{\textit{c}} \\ \hline
+            \textbf{\textit{a}} & $a^2$ & $ab$ & $ac$ \\ \hline
+            \textbf{\textit{b}} & $ba$ & $b^2$ & $bc$ \\ \hline
+            \textbf{\textit{c}} & $ca$ & $cb$ & $c^2$ \\ \hline
+        \end{tabular}
+        \caption{Multiplication convention}
+        %\label{tab:my_label}
+    \end{table}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering
+        $\text{C\textsubscript{4}}=\langle\{a\}\rangle$, $a^4=e$
+        \begin{table}[]
+            \centering
+            \setlength\extrarowheight{3pt}
+            \begin{tabular}{|c|c|c|c|c|}
+                 \hline\textbf{C\textsubscript{4}} & \textbf{\textit{e}} & \textbf{\textit{a}} & \textbf{\textit{a\textsuperscript{2}}} & \textbf{\textit{a\textsuperscript{3}}} \\ \hline
+                 \textbf{\textit{e}} & $e$ & $a$ & $a^2$ & $a^3$ \\ \hline
+                 \textbf{\textit{a}} & $a$ & $a^2$ & $a^3$ & $e$\\ \hline
+                 \textbf{\textit{a\textsuperscript{2}}} & $a^2$ & $a^3$ & $e$ & $a$ \\ \hline
+                 \textbf{\textit{a\textsuperscript{3}}} & $a^3$ & $e$ & $a$ & $a^2$ \\\hline
+            \end{tabular}
+            \caption{C\textsubscript{4}, cyclic group of order 4}
+            %\label{tab:my_label}
+        \end{table}
+        \column{0.5\textwidth}
+        \centering
+        $\text{V}=\langle\{a,b\}\rangle$, $a^2=e=b^2$, $ab=ba$
+        \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline\textbf{V} & \textbf{\textit{e}} & \textbf{\textit{a}} & \textbf{\textit{b}} & \textbf{\textit{ab}} \\ \hline
+            \textbf{\textit{e}} & $e$ & $a$ & $b$ & $ab$ \\ \hline
+            \textbf{\textit{a}} & $a$ & $e$ & $ab$ & $b$\\ \hline
+            \textbf{\textit{b}} & $b$ & $ab$ & $e$ & $a$ \\ \hline
+            \textbf{\textit{ab}} & $ab$ & $b$ & $a$ & $e$ \\\hline
+        \end{tabular}
+        \caption{V, Klein four-group}
+        %\label{tab:my_label}
+    \end{table}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Examples of a Cayley table (contd.)}
+    \centering
+    $\text{S\textsubscript{3} $\cong$ D\textsubscript{3}}=\langle\{a,b\}\rangle$, $a^3=e=b^2$, $a^{-1}b=ba$
+    \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline\textbf{S\textsubscript{3} $\cong$ D\textsubscript{3}} & \textbf{\textit{e}} & \textbf{\textit{a}} & \textbf{\textit{a\textsuperscript{2}}} & \textbf{\textit{b}} & \textbf{\textit{ab}} & \textbf{\textit{a\textsuperscript{2}b}} \\ \hline
+            \textbf{\textit{e}} & $e$ & $a$ & $a^2$ & $b$ & $ab$ & $a^2b$ \\ \hline
+            \textbf{\textit{a}} & $a$ & $a^2$ & $e$ & $ab$ & $a^2b$ & $b$\\ \hline
+            \textbf{\textit{a\textsuperscript{2}}} & $a^2$ & $e$ & $a$ & $a^2b$ & $b$ & $ab$ \\ \hline
+            \textbf{\textit{b}} & $b$ & $a^2b$ & $ab$ & $e$ & $a^2$ & $a$ \\\hline
+            \textbf{\textit{ab}} & $ab$ & $b$ & $a^2b$ & $a$ & $e$ & $a^2$ \\\hline
+            \textbf{\textit{a\textsuperscript{2}b}} & $a^2b$ & $ab$ & $b$ & $a^2$ & $a$ & $e$ \\\hline
+        \end{tabular}
+        \caption{S\textsubscript{3}, symmetric group of permutations of 3 objects, isomorphic (vide infra) to \centering D\textsubscript{3}, dihedral group of symmetries of an equilateral triangle}
+        %\label{tab:my_label}
+    \end{table}
+    \begin{description}
+        \item[Exercise] Figure out the inverse and order of each element, subgroups, conjugacy classes, normal subgroups and center for each of the three examples.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Coset}
+    \begin{definition}
+        With respect to elements $g\in G$, the \boldtext{left cosets} of a subgroup $(H,\star)$ of a group $(G,\star)$ are given by $gH\coloneqq\{g\star h\mid h\in H\}$, and the \boldtext{right cosets} of $H$ are given by $Hg\coloneqq\{h\star g\mid h\in H\}$.
+    \end{definition}
+    Left (or right) cosets of $H\leq G$ are disjoint subsets of $G$.\\ 
+    Each (left or right) coset of $H\leq G$ in $G$ has $\lvert H\rvert$ number of elements.\\
+    Given an abelian group $G$, $\forall$ $H\leq G,g\in G$, $gH=Hg$.\\
+    As seen already, $N\vartriangleleft G\iff gN=Ng$, $\forall$ $g\in G$.
+    \begin{definition}
+        The \boldtext{index} of a subgroup $H$ in a group $G$ is the number of left (or right) cosets of $H$ in $G$ and is denoted by $\lvert G:H\rvert$.
+    \end{definition}
+    Restating Lagrange's theorem:
+    \begin{theorem}
+        For a subgroup $H$ of a group $G$, $\lvert G\rvert=\lvert G:H\rvert\lvert H\rvert$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Equivalence Class and Quotient Set}
+    \begin{definition}
+        The \boldtext{equivalence class} $[a]$ of an element $a$ in set $S$, with respect to an equivalence relation $\sim$, is the set of elements in $S$ that are equivalent to $a$, $[a]\coloneqq\{x\in S\mid a\sim x\}$, i.e. the binary relation $\sim$ satisfies $\forall$ $a,b,c\in S$:
+        \begin{itemize}
+            \item \italictext{Reflexivity}: $a\sim a$ ,
+            \item \italictext{Symmetry}: $a\sim b\iff b\sim a$ ,
+            \item \italictext{Transitivity}: $a\sim b\text{ and }b\sim c\implies a\sim c$ .
+        \end{itemize}
+    \end{definition}
+    Each element of a set belongs to exactly one of its equivalence classes.
+    \begin{definition}
+        The set $S/{\sim}$ of all equivalence classes of a set $S$ is called a \italictext{partition} of $S$ by $\sim$ or a \boldtext{quotient set} of $S$ by $\sim$ .
+    \end{definition}
+    If a set $S$ has an additional structure (e.g. that of a vector space or a group) and the equivalence relation $\sim$ on $S$ is \italictext{compatible} with that structure, its quotient set $S/{\sim}$ inherits that structure.
+\end{frame}
+
+\begin{frame}{Quotient Space and Quotient Group}
+    \begin{definition}
+        For a vector space $V$ and its linear subspace $W$, the \boldtext{quotient space} $V/W$ is the quotient set $V/{\sim}$, where the equivalence relation $\sim$ on $V$ is defined as $\mathbf{v}_1\sim\mathbf{v}_2\iff\mathbf{v}_1-\mathbf{v}_2\in W$, i.e. $[\mathbf{v}]=\{\mathbf{v}+\mathbf{w}\mid\mathbf{w}\in W\}$. This set forms a vector space with the operations defined for vectors $\mathbf{v}_1,\mathbf{v}_2\in V$ and scalars $a\in F$, (where $F=\mathbb{R}, \mathbb{C},$ etc.), as:
+        \begin{itemize}
+            \item $a\cdot[\mathbf{v}_1]=[a\cdot\mathbf{v}_1]$ ,
+            \item $[\mathbf{v}_1]+[\mathbf{v}_2]=[\mathbf{v}_1+\mathbf{v}_2]$ .
+        \end{itemize}
+    \end{definition}
+    \begin{definition}
+        For a group $(G,\star)$ and its normal subgroup $N$, the \boldtext{quotient group} $G/N$ is the set of all left (or right) cosets of $N$ in $G$, i.e. $G/N\coloneqq\{gN\mid g\in G\}$. This set forms a group with the group operation $\bullet$ defined $\forall g_1,g_2\in G$ as:
+        \begin{itemize}
+            \item $(g_1N)\bullet(g_2N)=(g_1\star g_2)N$ .
+        \end{itemize}
+    \end{definition}
+    \begin{description}
+        \item[Exercise] Verify that $\bullet$ on the set $G/N$ satisfies the group axioms.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Exercise 3}
+    \begin{enumerate}
+        \item Prove the following:
+        \begin{itemize}
+            \item Given a subgroup $H\leq G$, $\forall$ $g\in G$, $x\in gH\iff xH=gH$.
+            \item Given a subgroup $H\leq G$, $\forall$ $z\in Z(G)$, $zH=Hz$.
+            \item $\lvert\mathbb{Z}:k\mathbb{Z}\rvert=k$, for any $k\in\mathbb{N}$.
+            \item Left cosets of $H\leq G$ form equivalence classes with respect to the equivalence relation $x\sim y\iff x^{-1}y\in H$, $\forall$ $x,y\in G$.
+            \item For $K\leq H\leq G$, $\lvert G:K\rvert=\lvert G:H\rvert\lvert H:K\rvert$, without assuming Lagrange's theorem. \textbf{Hint}: Prove Lagrange's theorem.
+            \item In the quotient space $V/W$, the identity for vector addition is $[\mathbf{0}]=W$.
+            \item In the quotient group $G/N$, the identity is $N$ and $(gN)^{-1}=g^{-1}N$.
+        \end{itemize}
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item A non-abelian group can have a symmetric Cayley table. \textbf{(F)}
+            \item Any group in which every element is its own inverse is abelian. \textbf{(T)}
+            \item A set of 6 elements, each inverse of itself, forms an abelian group. \textbf{(F)}
+            \item The left coset of $H\leq G$ with respect to each $g\in G$ is the right coset of the conjugate subgroup $gHg^{-1}$ with respect to $g$. \textbf{(T)}
+            \item A conjugacy class of a group is an equivalence class of the underlying set, with conjugation as its equivalence relation. \textbf{(T)}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Unit IV - Maps involving Groups}
+
+\begin{frame}{Structure preserving maps}
+    \begin{definition}
+        A \boldtext{group homomorphism} is a map $f:G\xrightarrow{}H$, i.e. from group $(G,\star)$ to $(H,\bullet)$, which preserves the group structure, viz. the identity and the group operation, by satisfying $f(g_1\star g_2)=f(g_1)\bullet f(g_2)$, $\forall g_1,g_2\in G$.
+    \end{definition}
+    As a result,
+    \begin{itemize}
+        \item $f(e_G)=e_H$, where $e_G$ and $e_H$ are identity in $G$ and $H$, respectively.
+        \item $f(g_1^{-1})=(f(g_1^{}))^{-1}$, i.e. inverse in $G$ maps to inverse of image, in $H$.
+    \end{itemize}
+    Thus, the map $f$ is said to be \italictext{compatible} with the group structure of $G$.
+    \begin{definition}
+        The \boldtext{kernel} of $f:G\xrightarrow{}H$ is the set of elements in $G$ that are mapped to the identity element ($e_H$) of $H$, i.e. $\mathbf{ker}(f)\equiv\{g\mid f(g)=e_H,\text{ } g\in G\}$.
+    \end{definition}
+    \begin{definition}
+        The \boldtext{image} of $f:G\xrightarrow{}H$ is the set of elements in $H$ to which elements of $G$ are mapped, i.e. $\mathbf{im}(f)\equiv f(G)\equiv\{f(g)\mid g\in G\}$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Structure preserving maps (contd.)}
+    A group homomorphism $f:G\xrightarrow{}H$ is said to be \italictext{trivial} if $\mathbf{ker}(f)=G$.
+    \begin{definition}
+        A \boldtext{monomorphism} is a group homomorphism that is injective (one-one).
+    \end{definition}
+    \begin{definition}
+        An \boldtext{epimorphism} is a group homomorphism that is surjective (onto).
+    \end{definition}
+    \begin{definition}
+        An \boldtext{isomorphism} is a group homomorphism that is bijective (invertible).
+    \end{definition}
+    \begin{definition}
+        An \boldtext{endomorphism} is a group homomorphism of a group to itself.
+    \end{definition}
+    \begin{definition}
+        An \boldtext{automorphism} is a bijective (isomorphic) endomorphism of a group.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Group Action}
+    \begin{definition}
+        A \boldtext{group action} $\phi(g,x)$ of a group $(G,\star)$ on a set $X$ is a bijective (or invertible) map $\phi:G\times X\xrightarrow{}X$, satisfying the following axioms $\forall x\in X$ :
+        \begin{itemize}
+            \item Identity: $\phi(e,x)=x$, where $e$ is identity in $G$,
+            \item Compatibility: $\phi(g,\phi(h,x))=\phi(g\star h,x)$, $\forall$ $g,h\in G$. 
+        \end{itemize}
+    \end{definition}
+    Set $X$, together with an action of group $G$, is called a $G$-set.\\
+    The above definition is the case of a \italictext{left group action} $\phi_L:G\times X\xrightarrow{}X$, usually adopted as a convention. Alternatively, one can define a \italictext{right group action} $\phi_R:X\times G\xrightarrow{}X$, satisfying analogous axioms.
+    \begin{definition}
+        An \boldtext{inner automorphism} is the group action of a group $G$ on itself, given by the map $\phi_g:G\times G\xrightarrow{}G$ for a fixed $g\in G$, defined as $\phi_g(x)\coloneqq g^{-1}xg$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Orbits under group action}
+    \begin{definition}
+        The \boldtext{orbit} of an element $x\in X$ under action $\phi(g,x)$ of a group $(G,\star)$ is the set of elements in $X$ to which $x$ gets mapped, under the group action, i.e. $G\cdot x\coloneqq\{\phi(g,x)\mid g\in G\}$.
+    \end{definition}
+    \begin{definition}
+        \boldtext{Length} of the orbit $G\cdot x$ of an element $x\in X$ under the action of a group $G$ is the number of elements in that orbit and is denoted as $\lvert G\cdot x\rvert$. 
+    \end{definition}
+    \begin{definition}
+        The \boldtext{quotient of action} (denoted as $X/G$) of a group $G$ on set $X$ is the set of all orbits of elements in $X$ under the action $\phi(g,x)$ of $G$, i.e. it is the quotient set $X/{\sim}$, where the equivalence relation $\sim$ on $X$ is defined as $x\sim y\iff\exists$ $g\in G$ such that $y=\phi(g,x)$.
+    \end{definition}
+    Any additional structure on set $X$ is inherited by the quotient of action. 
+    \begin{description}
+        \item[Exercise] Verify that $\sim$ forms a partition of $X$.
+    \end{description}
+\end{frame}
+
+\begin{frame}{Stabilizer}
+    \begin{definition}
+        For $x\in X$ and $g\in G$, $x$ is said to be a \boldtext{fixed point} of $g$ if it is invariant under the action $\phi$ of group $G$ on set $X$, i.e. $\phi(g,x)=x$.
+    \end{definition}
+    \begin{definition}
+        The \boldtext{stabilizer} $G_x$ of a group $G$ with respect to an $x\in X$ is the set of elements in $G$ with $x$ as their fixed point, i.e. $G_x\coloneqq\{g\in G\mid\phi(g,x)=x\}$.
+    \end{definition}
+    \begin{definition}
+        Group action is \boldtext{transitive} if there is exactly one orbit $G\cdot x=X$, $\forall$ $x\in X$.
+    \end{definition}
+    \begin{definition}
+        Group action is \boldtext{faithful} if the intersection of the stabilizers $G_x$, $\forall$ $x\in X$, is trivial, i.e. $\bigcap\limits_{x\in X}G_x=\{e_G\}$, where $e_G$ is the identity in $G$. 
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Orbit-Stabilizer Theorem}
+    Given a fixed $x\in X$ and action $\phi(g,x)$ of a group $(G,\star)$ on set $X$, we define a map $\alpha_x:G\xrightarrow{}X$ by $\alpha_x:g\mapsto \phi(g,x)$. Naturally, $\mathbf{im}(\alpha_x)\equiv G\cdot x$ .\\
+    \begin{theorem}
+        \begin{list}{\maltese}{\leftmargin=1em \itemindent=0em}
+            \item For a fixed $x\in X$, there exists a bijection $f_x:G/G_x \xrightarrow{}G\cdot x$ from the set $G/G_x$ of all left cosets $gG_x$ of the stabilizer subgroup $G_x$ to the orbit $G\cdot x$ of $x$ under the action $\phi(g,x)$ of a group $(G,\star)$ on a set $X$, given by the map $f_x:gG_x\mapsto \phi(g,x)$.
+            \item $\forall$ $g,h\in G$, $f_x(g)=f_x(h)$ iff $g$ and $h$ belong to the same coset of the stabilizer subgroup $G_x$, i.e. $f_x(g)=f_x(h)\iff h\in gG_x$.
+            \item Length of orbit $G\cdot x$ of an element $x\in X$, under the action of a group $G$, is equal to the index of stabilizer subgroup $G_x$, of $G$ with respect to $x$, in $G$, i.e. $\lvert G\cdot x\rvert=\lvert G:G_x\rvert=\lvert G\rvert/\lvert G_x\rvert$. 
+        \end{list}
+    \end{theorem}
+    Since stabilizers need not be normal subgroups, $G/G_x$ is not necessarily a $\text{quotient group, but simply the set of all left cosets }gG_x\text{ of the stabilizer }G_x.$
+\end{frame}
+
+\begin{frame}{Centralizer and Normalizer}
+    \begin{definition}
+        The \boldtext{centralizer} $C_G(S)$ of a subset $S$ in group $G$ is the set of elements in $G$ such that each element in $C_G(S)$ commutes with every element in $S$, i.e. $C_G(S)\coloneqq\{g\in G \mid gsg^{-1}=s$  $\forall$ $s\in S\}$.
+    \end{definition}
+    Hence, it can be equivalently said that every element in $S$ is invariant under conjugation by each element in $C_G(S)$.
+    \begin{definition}
+        The \boldtext{normalizer} $N_G(S)$ of a subset $S$ in group $G$ is the set of elements in $G$ such that the subset $S$ is invariant under conjugation by each element in $N_G(S)$, i.e. $N_G(S)\coloneqq\{g\in G \mid gSg^{-1}=S\}$.
+    \end{definition}
+    \begin{description}
+        \item[Exercise] Verify that $Z(G)\leq C_G(S)\leq N_G(S)\leq G$.
+    \end{description}
+    Clearly, $\bigcap\limits_{S\subseteq G}C_G(S)=Z(G)$, or more evidently, $\bigcap\limits_{g\in G}C_G(\{g\})=Z(G)$.
+\end{frame}
+
+\begin{frame}{Burnside's Lemma}
+    \begin{definition}
+        The \boldtext{set of orbits} of a set $X$ under a group $G$ is the set of distinct orbits of all elements in $X$ under action of $G$ on $X$, i.e. $X/G\coloneqq\{G\cdot x\mid x\in X\}$.
+    \end{definition}
+    For each $g\in G$, let $X^g$ denote the set of fixed points of $g$ in $X$ under the action $\phi$ of group $G$ on set $X$, i.e. $X^g\coloneqq\{x\in X\mid\phi(g,x)=x\}$.
+    \begin{lemma}
+        The number of distinct orbits (denoted by $\lvert X/G\rvert$) of all elements in set $X$ under the action of a finite group $G$ on $X$ is given as:
+        \vspace{-0.75em}
+        \begin{align*}
+            \lvert X/G\rvert=\frac{1}{\lvert G\rvert}\sum\limits_{g\in G}\lvert X^g\rvert \;.
+        \end{align*}
+    \end{lemma}
+    Hence, it can be equivalently said that the number of distinct orbits of a set $X$ under the action of a finite group $G$ is equal to the average number of fixed points of an element of $G$, in $X$.
+\end{frame}
+
+\begin{frame}{Conjugacy Class Equation}
+    Let a finite group $G$ have $k$ distinct conjugacy classes, out of which $l$ have conjugacy class order greater than one.
+    \begin{theorem}
+        Choosing a representative element $\mathcal{C}_i$ from each conjugacy class of a finite group $G$, we have
+        \vspace{-0.75em}
+        \begin{align*}
+            \lvert G\rvert=\sum\limits_{i=1}^{k}\lvert G:C_G(\mathcal{C}_i)\rvert \;.
+        \end{align*}
+        Equivalently,
+        \vspace{-0.75em}
+        \begin{align*}
+            \lvert G\rvert=\lvert Z(G)\rvert+\sum\limits_{i=1}^{l}\lvert G:C_G(\mathcal{C}_i)\rvert \;.
+        \end{align*}
+    \end{theorem}
+    Check out \hyperlink{ex_class_eq}{\color[rgb]{0.7,0.0,0.1}this problem}, which establishes conjugacy classes as orbits under the action of a group on itself through conjugation and centralizers of the group as the stabilizer subgroups under the same group action.
+\end{frame}
+
+\begin{frame}{First Isomorphism Theorem}
+    The isomorphism theorems can be proven using the \italictext{fundamental theorem on homomorphisms}, which states:
+    \vspace{-0.1em}
+    \begin{theorem}
+        Given an arbitrary group homomorphism $f:G\xrightarrow{}H$ and an epimorphism $\phi:G\xrightarrow{}G/N$, defined by $\phi:g\mapsto gN$ for $N\vartriangleleft G$ such that $N\subseteq\mathbf{ker}(f)$, there exists a unique homomorphism $\alpha:G/N\xrightarrow{}H$ with $\alpha(gN)=f(g)$.
+    \end{theorem}
+    \vspace{-0.1em}
+    The \italictext{first isomorphism theorem} is obtained by setting $N=\mathbf{ker}(f)$.
+    \vspace{-0.1em}
+    \begin{theorem}[1]
+        Given a group homomorphism $f:G\xrightarrow{}H$, $\mathbf{ker}(f) \vartriangleleft G$, $\mathbf{im}(f)\leq H$ and $\mathbf{im}(f)$ is isomorphic to the quotient group $G/\mathbf{ker}(f)$, or $G/\mathbf{ker}(f)\cong\mathbf{im}(f)$.
+    \end{theorem}
+    \vspace{-0.1em}
+    If $f$ is an epimorphism (surjective), $H$ is isomorphic to $G/\mathbf{ker}(f)$.
+    \vspace{-0.1em}
+    \begin{corollary}
+        Given a group homomorphism $f:G\xrightarrow{}H$, the index of $\mathbf{ker}(f)$ in $G$ equals the order of $\mathbf{im}(f)$, i.e. $\lvert G:\mathbf{ker}(f)\rvert=\lvert\mathbf{im}(f)\rvert\text{.Thus, }\lvert G\rvert=\lvert\mathbf{ker}(f)\rvert\lvert\mathbf{im}(f)\rvert$.
+    \end{corollary}
+\end{frame}
+
+\begin{frame}{Fundamental Theorems of abelian groups}
+    \italictext{Fundamental theorem of cyclic groups}:
+    \begin{theorem}
+        Order of every subgroup of a finite cyclic group $G$ divides the order $\lvert G\rvert$ of group $G$ and there exists exactly one subgroup of $G$ for each divisor of $\lvert G\rvert$. 
+    \end{theorem}
+    \begin{lemma}
+        $\text{For cyclic groups }\mathbb{Z}_k\text{ of order }k,\text{ }\mathbb{Z}_{mn}\cong\mathbb{Z}_m\oplus\mathbb{Z}_n\Leftrightarrow m \text{ and } n\text{ are coprimes.}$
+    \end{lemma}
+    \italictext{Fundamental theorem of finite abelian groups}:
+    \begin{theorem}
+        Every finite abelian group $G$ of order $\lvert G\rvert=p_1p_2\cdots p_l$ is isomorphic to a direct sum of cyclic subgroups of prime-power order, i.e. $G\cong\bigoplus\limits_{i=1}^{l} \mathbb{Z}_{p_i}$, where $\mathbb{Z}_{p_i}$ is a cyclic group of order $p_i$, a prime raised to some power.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Exercise 4}
+    \begin{enumerate}
+        \item Prove the following:
+        \begin{itemize}
+            \item Image of a group homomorphism $f:G\xrightarrow{}H$ is a subgroup of $H$.
+            \item Kernel of a group homomorphism $f:G\xrightarrow{}H$ is a subgroup of $G$.
+            \item Kernel of a group homomorphism is trivial iff it is a monomorphism.
+            \item Kernel of a group homomorphism is a normal subgroup of the domain.
+            \item Any homomorphism from a simple group must be injective or trivial.
+            \item The stabilizer $G_x$ of group $G$ with respect to $x\in X$ is a subgroup of $G$.
+            \item Stabilizers of elements in the same orbit are conjugate to each other.
+            \item The centralizer of a set $S$ in a group $G$ is always a normal subgroup of $G$ and of the normalizer of $S$ in $G$.
+            \item $C_G(C_G(S))$ contains $S$, but $C_G(S)$ need not contain $S$.
+            \item For $H\leq G$, $N_G(H)$ contains $H$.
+            \item\label{ex_class_eq} Under an inner automorphism on $G$, the stabilizer $G_x$ of $G$ with respect to any $x\in G$ is the centralizer $C_G(x)$, of $\{x\}$, in $G$. Also the number of distinct conjugates of $x$ in $G$ is the index $\lvert G:C_G(x)\rvert$, of $C_G(x)$, in $G$.
+            \item Every finite $p$-group has a non-trivial center.
+            \item Given a group epimorphism $\phi:G\xrightarrow{}G/N$, defined by $\phi:g\mapsto gN$ for $N\vartriangleleft G$, $\mathbf{ker}(\phi)=N$. Such a $\phi$ is called a \italictext{canonical homomorphism}.
+        \end{itemize}
+        \saveenum
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Exercise 4 (contd.)}
+    \begin{enumerate}
+        \resume
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item For a group homomorphism $f:G\xrightarrow{}H$, the preimage of a normal subgroup of $H$ is a normal subgroup of $G$. \textbf{(T)}
+            \item For a group $G$, the map $f:G\xrightarrow{}G$, given by the involution $f:g\mapsto{}g^{-1}$ is always a homomorphism. \textbf{(F)}
+            \item For an abelian group $G$, the map $f:G\xrightarrow{}G$, given by the involution $f:g\mapsto{}g^{-1}$ is always an automorphism. \textbf{(T)}
+            \item The order of a homomorphic image of a group element doesn't necessarily divide the order of that element. \textbf{(F)}
+            \item If $\mathbf{dim}(V)=n$, $\mathbf{GL}(V)$ is isomorphic to $\mathbf{GL}(n,F)$. \textbf{(T)}
+            \item Given $H\leq G$, for a fixed $g\in G$, the orbit $H\cdot g$ of $g$ under the right action of $H$ on $G$ is the left coset $gH$ of $H$ in $G$, while the orbit $g\cdot H$ under the left action of $H$ on $G$ is the right coset $Hg$ of $H$ in $G$. \textbf{(T)}
+            \item For an arbitrary group $G$, $C_G(G)=Z(G)$. \textbf{(F)}
+            \item For singleton sets $\{g\}$, $C_G(g)\equiv C_G(\{g\})=N_G(\{g\})\equiv N_G(g)$. \textbf{(T)}
+            \item For all $g\in G$, $\lvert C_G(g)\rvert$ divides the order of $g$ in $G$. \textbf{(F)}
+            \item The number of distinct conjugate subgroups $gHg^{-1}$ of $H\leq G$ equals the index $\lvert G:N_G(H)\rvert$ of normalizer $N_G(H)$ of $H$ in $G$. \textbf{(T)}
+            \item All abelian groups of order $27$ are isomorphic and order $21$ aren't. \textbf{(F)}
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Unit V - Representation Theory of Groups}
+
+\begin{frame}{Matrix Transformations}
+    \begin{lemma}
+        Any linear transformation between finite-dimensional vector spaces can be represented by a matrix.
+    \end{lemma}
+    Conversely, every matrix transformation is a linear transformation.
+    \begin{proposition}
+        For every matrix $A_{m\times n}$ with entries in $F$ (where $F=\mathbb{R}, \mathbb{C},$ etc.), there exists the linear transformation $T:F^n\xrightarrow{}F^m$, given by $T(\mathbf{v})=A\mathbf{v}$.
+    \end{proposition}
+    \begin{lemma}
+        Trace (determinant) of a matrix, invariant under similarity transformations, equals the sum (product) of all its eigenvalues counted with multiplicities.
+    \end{lemma}
+    \begin{corollary}
+        Trace (determinant) of a linear transformation between finite-dimensional vector spaces is independent of the basis chosen for those vector spaces.
+    \end{corollary}
+\end{frame}
+
+\begin{frame}{Diagonalizability of matrices}
+    \begin{definition}
+        A square matrix is called \boldtext{diagonalizable} if it is similar (associated through a similarity transformation) to a diagonal matrix.
+    \end{definition}
+    Equivalently, $\text{diagonalizability}\iff\text{linear independence of eigenvectors}$.\\
+    The canonical approach of diagonalization is called \italictext{eigendecomposition}, in which the diagonal entries of the associated diagonal matrix are the eigenvalues of the original matrix and the columns of the diagonalizing matrix are the eigenvectors of the original matrix.
+    \begin{lemma}
+        If a matrix $A$ represents the linear transformation $T:V\xrightarrow{}V$ of a vector space $V$, $A$ is diagonalizable iff a basis of $V$ comprises eigenvectors of $A$.
+    \end{lemma}
+    \begin{proposition}
+        For a finite order matrix transformation $T$ of a finite-dimensional vector space $V$, $($i.e. $T^n=\mathbb{I}$, $n\in\mathbb{N})$, a basis of $V$ comprises eigenvectors of $T$.
+    \end{proposition}
+\end{frame}
+
+\begin{frame}{Spectral Theorems for matrices}
+    \italictext{Spectral theorem for Hermitian matrices}:
+    \begin{theorem}
+        For a(n) Hermitian matrix:
+        \begin{itemize}
+            \item all eigenvalues are real,
+            \item eigenvectors corresponding to distinct eigenvalues are orthogonal,
+            \item there exists an orthogonal basis of the vector space consisting of those eigenvectors.
+        \end{itemize}
+    \end{theorem}
+    \begin{corollary}
+        Hermitian matrices are unitarily diagonalizable, i.e. for every Hermitian matrix $H$, there exists a unitary matrix $U$ such that $U^{-1}HU$ is diagonal.
+    \end{corollary}
+    The diagonal entries of $U^{-1}HU$ are the (real) eigenvalues of $H$ and the columns of $U$ are the (orthogonal) eigenvectors of $H$.
+\end{frame}
+
+\begin{frame}{Spectral Theorems for matrices (contd.)}
+    \italictext{Spectral theorem for unitary matrices}:
+    \begin{theorem}
+        For a unitary matrix:
+        \begin{itemize}
+            \item all (complex) eigenvalues have absolute value 1,
+            \item eigenvectors corresponding to distinct eigenvalues are orthogonal,
+            \item there exists an orthogonal basis of the vector space consisting of those eigenvectors.
+        \end{itemize}
+    \end{theorem}
+    \begin{corollary}
+        Unitary matrices are unitarily diagonalizable, i.e. for every unitary matrix $\mathcal{U}$, there exists a unitary matrix $U$ such that $U^{-1}\mathcal{U}U$ is diagonal.
+    \end{corollary}
+    The diagonal entries of $U^{-1}\mathcal{U}U$ are the eigenvalues (with unit modulus) of $\mathcal{U}$ and the columns of $U$ are the (orthogonal) eigenvectors of $\mathcal{U}$.
+\end{frame}
+
+\begin{frame}{Linear Representation}
+    Abstract group elements are described in terms of bijective (invertible) linear transformations (automorphisms) of vector spaces.
+    \begin{definition}[1]
+        A \boldtext{linear representation} $\phi$ of a group $(G,\star)$ is the group action of $G$ on a vector space $V$, i.e. $\phi:G\times V\xrightarrow{}V$, given by a map $\phi(g):v\mapsto\phi(g,v)$, satisfying the axioms for group action and linearity in the second argument.
+    \end{definition}
+    Dimension of vector space $V$ is called the \italictext{dimension} of the representation.
+    \begin{definition}[2]
+        A \boldtext{linear representation} $\rho$ of a group $(G,\star)$ is the group homomorphism $\rho:G\xrightarrow{}\mathbf{GL}(V)$ from $G$ to the general linear group $\mathbf{GL}(V)$ on a vector space $V$, given by a map $\rho(g):v\mapsto\rho(g,v)$, satisfying the axioms for group homomorphism and linearity in the second argument.
+    \end{definition}
+    Groups elements are usually represented by invertible matrices (sometimes called \italictext{representatives}) and the group operation by matrix multiplication.
+\end{frame}
+
+\begin{frame}{Linear Representation (contd.)}
+    \begin{definition}
+        \boldtext{Kernel} of a representation $\rho:G\xrightarrow{}\mathbf{GL}(V)$ is the set of preimage(s) of the identity transformation in $V$ $(\mathbf{id}_V)$, or $\mathbf{ker}(\rho)=\{g\mid \rho(g)=\mathbf{id}_V,\text{ } g\in G\}$.
+    \end{definition}
+    \begin{definition}
+        A \boldtext{faithful representation} is a representation that is a monomorphism.
+    \end{definition}
+    Kernel of a faithful representation is trivial and no two elements of the group have the same representative.
+    \begin{definition}
+        Representations $\rho:G\xrightarrow{}\mathbf{GL}(V)$ and $\sigma:G\xrightarrow{}\mathbf{GL}(W)$ are \boldtext{isomorphic} if there exists an isomorphism $\alpha:V\xrightarrow{}W$ s.t. $\forall$ $g\in G$, $\alpha\circ\rho(g)=\sigma(g)\circ\alpha$.
+    \end{definition}
+    The map $\alpha$ is said to be \italictext{equivariant} when representations are isomorphic.
+    \begin{definition}
+        A \boldtext{unitary representation} is a group homomorphism $\rho:G\xrightarrow{}\mathbf{U}(V)$.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Direct Sum of representations}
+    \begin{definition}[1]
+        \boldtext{Direct sum} of representations $\rho_1:G_1\xrightarrow{}\mathbf{GL}(V_1)$ and $\rho_2:G_2\xrightarrow{}\mathbf{GL}(V_2)$ is a group homomorphism $\rho_1\oplus\rho_2:G_1\times G_2\xrightarrow{}\mathbf{GL}(V_1\oplus V_2)$ such that $(\rho_1\oplus\rho_2)((g_1,g_2),v_1\oplus v_2)=\rho_1(g_1,v_1)\oplus\rho_2(g_2,v_2)$, $\forall$ $g_1 \in G_1, g_2 \in G_2$, $v_1\in V_1, v_2\in V_2$.
+    \end{definition}
+    \begin{definition}[2]
+        \boldtext{Direct sum} of representations $(V_1,\rho_1)$ and $(V_2,\rho_2)$ of groups $G_1$ and $G_2$, respectively, is a linear representation $(V_1\oplus V_2,\rho)$ of the group $G_1\times G_2$ whose action $\alpha((g_1,g_2),v_1\oplus v_2)$ on $V_1\oplus V_2$ is defined component-wise:
+        \begin{itemize}
+            \item $\alpha((g_1,g_2),v_1\oplus v_2)=\phi_1(g_1,v_1)\oplus\phi_2(g_2,v_2)$, $\forall$ $g_1 \in G_1$, $g_2 \in G_2$, $v_1\in V_1$, $v_2\in V_2$, $\phi_1:G_1\times V_1\xrightarrow{}V_1$ and $\phi_2:G_2\times V_2\xrightarrow{}V_2$ .
+        \end{itemize}
+    \end{definition}
+    Particularly, for matrix representations $(V_1,\rho_1)$ and $(V_2,\rho_2)$ of a group $G$, $\rho_1\oplus\rho_2:G\times G\xrightarrow{}\mathbf{GL}(V_1\oplus V_2)$ is given by $(g_1,g_2)\mapsto
+    \begin{pmatrix}
+    \rho_1(g_1) & \mathbf{O} \\ 
+    \mathbf{O} & \rho_2(g_2)
+    \end{pmatrix}$.
+\end{frame}
+
+\begin{frame}{Direct Product of representations}
+    \begin{definition}[1]
+        \boldtext{Direct product} of representations $\rho_1$:$G_1\xrightarrow{}\mathbf{GL}(V_1)$ and $\rho_2$:$G_2\xrightarrow{}\mathbf{GL}(V_2)$ is a group homomorphism $\rho_1\otimes\rho_2:G_1\times G_2\xrightarrow{}\mathbf{GL}(V_1\otimes V_2)$ such that $(\rho_1\otimes\rho_2)((g_1,g_2),v_1\otimes v_2)=\rho_1(g_1,v_1)\otimes\rho_2(g_2,v_2)$, $\forall$ $g_1 \in G_1, g_2 \in G_2$, $v_1\in V_1, v_2\in V_2$.
+    \end{definition}
+    \begin{definition}[2]
+        \boldtext{Direct product} of representations $(V_1,\rho_1)$ and $(V_2,\rho_2)$ of groups $G_1$ and $G_2$, respectively, is a linear representation $(V_1\otimes V_2,\rho)$ of the group $G_1$$\times$$G_2$ whose action $\alpha((g_1,g_2),v_1\otimes v_2)$ on $V_1\otimes V_2$ is defined component-wise:
+        \begin{itemize}
+            \item $\alpha((g_1,g_2),v_1\otimes v_2)=\phi_1(g_1,v_1)\otimes\phi_2(g_2,v_2)$, $\forall$ $g_1 \in G_1$, $g_2 \in G_2$, $v_1\in V_1$, $v_2\in V_2$, $\phi_1:G_1\times V_1\xrightarrow{}V_1$ and $\phi_2:G_2\times V_2\xrightarrow{}V_2$ .
+        \end{itemize}
+    \end{definition}
+    For $G_1=G_2$, $\rho_1\otimes\rho_2$ is also called a \italictext{tensor product} of the representations.
+\end{frame}
+
+\begin{frame}{Subrepresentation and Reducibility}
+    \begin{definition}
+        A \boldtext{subrepresentation} $\sigma:G\xrightarrow{}\mathbf{GL}(W)$ of a representation $\rho:G\xrightarrow{}\mathbf{GL}(V)$ is a map that is preserved by group action, i.e. $\forall$ $w\in W$ and $g\in G$, $\sigma(g,w)\in W$, where $W$ is a linear subspace of $V$.
+    \end{definition}
+    Clearly $\sigma$ is also a representation of the group $G$.\\
+    Indicatively, the subspace $W$ itself is referred to as the subrepresentation.\\
+    A trivial (sub)representation $V^G(g):V\xrightarrow{}V$ is the map $V^G(g):v\mapsto v$.
+    \begin{definition}
+        A non-trivial representation $(V,\rho)$ is called an \boldtext{irreducible representation} (or \italictext{irrep}) if it has exactly two subrepresentations, viz. $(\{\mathbf{0}\},\sigma)$ and $(V,\rho)$.
+    \end{definition}
+    \begin{definition}
+        A \boldtext{reducible representation} is a non-trivial representation with more than two subrepresentations.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Subrepresentation and Reducibility (contd.)}
+    \begin{theorem}
+        Given two linear representations $(V,\rho_V)$ and $(W,\rho_W)$ of a group $G$ and a homomorphism $\alpha:V\xrightarrow{}W$, such that $\forall$ $g\in G$, $\alpha\circ\rho_V(g)=\rho_W(g)\circ\alpha$, $\mathbf{ker}(\alpha)$ is a subrepresentation of $V$ and $\mathbf{im}(\alpha)$ is a subrepresentation of $W$. 
+    \end{theorem}
+    \begin{definition}
+        A representation $V$ is said to be \boldtext{decomposable} if it is a direct sum of its subrepresentations $(\neq\{0\},V)$. Else, it is said to be \boldtext{indecomposable}.
+    \end{definition}
+    In terms of matrix representations, a representation is \italictext{decomposable} if all representative matrices can be block diagonalized upon a similarity transformation by the same invertible matrix, else it is \italictext{indecomposable}.\\
+    Each block is a subrepresentation of the matrix representation.
+    \begin{definition}
+        Matrix representations which are associated with each other through a similarity transformation are called \boldtext{equivalent representations}.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{More on irreducible representations}
+    \begin{theorem}
+        Irreducible representations are always indecomposable.
+    \end{theorem}
+    The converse holds for finite-dimensional complex representations of finite groups, but may not be true in general.\\
+    In terms of matrix representations, an irrep is one for which there exists no unitary transformation (similarity transformation through a unitary matrix) that will block diagonalize all the representative matrices simultaneously.\\
+    \begin{theorem}
+        The tensor product of irreps $(V_1,\rho_1)$ and $(V_2,\rho_2)$ of a group $G$ is not an irrep of $G$, in general. Although it is an irrep of the group $G\times G$.
+    \end{theorem}
+    $\rho_1\otimes\rho_2$ is decomposed as a direct sum of irreducible representations of $G$ using the \italictext{Clebsch-Gordan procedure}.
+\end{frame}
+
+\begin{frame}{More on irreducible representations (contd.)}
+    \begin{theorem}
+        Direct product of irreps $(V_1,\rho_1)$ and $(V_2,\rho_2)$ of distinct groups $G_1$ and $G_2$, respectively, is an irrep $(V_1\otimes V_2,\rho)$ of the group $G_1\times G_2$. In fact, all irreps of $G_1\times G_2$ arise as direct product of irreps of $G_1$ and $G_2$, respectively.
+    \end{theorem}
+    \begin{theorem}
+        If $(V,\rho_V)$ is a representation of a finite group with a subrepresentation $(W,\rho_W)$, there exists a complementary subrepresentation $(W^\prime,\rho_{W^\prime})$ of $(V,\rho_V)$ such that $\rho_V=\rho_W\oplus\rho_{W^\prime}$.
+    \end{theorem}
+    \begin{corollary}[Maschke's theorem]
+        Every representation of a finite group is a direct sum of its irreps.
+    \end{corollary}
+    Such representations are called \italictext{completely reducible representations}.\\
+    Every representation of a finite group is equivalent (through a similarity transformation) to a unitary representation, which is completely reducible.
+\end{frame}
+
+\begin{frame}{Dual Representation}
+    \begin{definition}
+        The \boldtext{dual representation} $\rho^*:G\xrightarrow{} \mathbf{GL}(V^*)$ over the dual vector space $V^*$ is defined with respect to the representation $\rho:G\xrightarrow{} \mathbf{GL}(V)$ over vector space $V$ such that $\rho^*$ maps an element of $G$ to the transpose of the image of the inverse of that element under $\rho$, i.e. $\rho^*:g\mapsto{\rho(g^{-1})}^\intercal$.
+    \end{definition}
+    The dual representation is also known as the \italictext{contragredient representation}.
+    \begin{proposition}
+        The dual representation $\rho^*$ of a group $G$ over the dual vector space $V^*$ is irreducible iff the associated representation $\rho$ of $G$ over the associated vector space $V$ is irreducible.
+    \end{proposition}
+    \begin{proposition}
+        The dual ${\rho}^{**}$ to the dual $\rho^*$ to any representation $\rho$ is isomorphic to $\rho$.
+    \end{proposition}
+    Although, $\rho^*$ need not be isomorphic to $\rho$.
+\end{frame}
+
+\begin{frame}{Exercise 5}
+    \begin{enumerate}
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item For a finite order matrix transformation $T:V\xrightarrow{}V$ of a finite dimensional vector space $V$, $T$ is not necessarily diagonalizable. \textbf{(F)}
+            \item Commutator $[A,B]$ of finite matrices $A$ and $B$ is traceless. \textbf{(T)}
+        \end{itemize}
+        \item Prove the following:
+        \begin{itemize}
+            \item If $(V,\rho)$ is a matrix representation of a finite group $G$ over a finite dimensional vector space $V$, $\rho(g)$ is diagonalizable, $\forall$ $g\in G$.
+            \item For a unitary representation $\rho$ of a group $G$, the representative $\rho^*(g)$ in the dual representation $\rho^*$ is the complex conjugate of $\rho(g)$, $\forall$ $g\in G$. 
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\section{Unit VI - Character Theory of Groups}
+
+\begin{frame}{Schur's Lemma}
+    \begin{lemma}
+        For two irreducible representations $(V,\rho_V)$ and $(W,\rho_W)$ of a group $G$, the homomorphism $\alpha:V\xrightarrow{}W$, such that $\forall$ $g\in G$, $\alpha\circ\rho_V(g)=\rho_W(g)\circ\alpha$, is either identically zero or an isomorphism (invertible).
+    \end{lemma}
+    Clearly, if the two representations are not isomorphic, for the map $\alpha$ to remain equivariant, it must be identically zero.
+    \begin{corollary}
+        If $(V,\rho_V)$ and $(W,\rho_W)$ are isomorphic, the space of all homomorphisms $\alpha:V\xrightarrow{}W$ is one-dimensional.
+    \end{corollary}
+    \begin{corollary}
+        For $V=W$ and $\rho_V=\rho_W$, any endomorphism $\alpha:V\xrightarrow{}V$ is a scalar multiple of the identity transformation in $V$ $(\mathbf{id}_V)$, i.e. $\alpha=\lambda\mathbf{id}_V$, $\lambda\in\mathbb{C}$.
+    \end{corollary}
+\end{frame}
+
+\begin{frame}{Schur's Lemma (contd.)}
+    \begin{corollary}
+        If a finite group $G$ has a faithful irreducible representation, then its center $Z(G)$ is a cyclic subgroup of $G$, isomorphic to that of $(\mathbb{C}\backslash \{0\},\times)$.
+    \end{corollary}
+    \begin{corollary}
+        All irreducible representations of finite abelian groups are one-dimensional.
+    \end{corollary}
+    \begin{corollary}
+        A finite abelian group $G$ has exactly $\lvert G\rvert$ irreducible representations.
+    \end{corollary}
+\end{frame}
+
+\begin{frame}{Character}
+    \begin{definition}
+        The \boldtext{character} of a linear representation $\rho:G\xrightarrow{}\mathbf{GL}(V)$ (where $V$ is a vector space over $F=\mathbb{R}, \mathbb{C},$ etc.) is the function $\chi_\rho:G\xrightarrow{}F$ given by $\chi_\rho(g)=\mathbf{Tr}(\rho(g))$, $\forall g\in G$.
+    \end{definition}
+    For a matrix representation of a group, the character of the representation for any given element is the trace of the representative matrix for that element in that representation.\\
+    A character $\chi_\rho$ is called \italictext{irreducible} if $\rho$ is an irreducible representation.\\
+    \begin{definition}
+        \boldtext{Kernel} of a character is defined as $\mathbf{ker}(\chi_\rho)\coloneqq\{g\in G\mid \chi_\rho(g)=\chi_\rho(e)\}$, where $e$ is the identity in $G$.
+    \end{definition}
+    Clearly, $\mathbf{ker}(\chi_\rho)=\mathbf{ker}(\rho)$, hence, a normal subgroup of $G$.\\
+    A character $\chi_\rho$ is \italictext{faithful} if $\mathbf{ker}(\chi_\rho)$ is trivial.
+\end{frame}
+
+\begin{frame}{Character (contd.)}
+    \begin{theorem}
+        Character of a direct sum (product) representation of representations $\rho$ and $\sigma$ is the sum (product) of the characters $\chi_\rho$ and $\chi_\sigma$ of the respective representations, i.e. $\chi_{\rho\oplus\sigma}=\chi_\rho+\chi_\sigma$ and $\chi_{\rho\otimes\sigma}=\chi_\rho\cdot\chi_\sigma$.
+    \end{theorem}
+    \begin{theorem}
+        For a representation $\rho$ of a group $G$, $\chi_{\rho^*}(g)=\chi_{\rho}(g^{-1})=\overline{\chi_{\rho}(g)}$, $\forall$ $g\in G$.
+    \end{theorem}
+    Dimension of a representation $\rho$ is called the \italictext{degree} of the character $\chi_\rho$.
+    \begin{theorem}
+         The number of complex irreducible characters of a group $G$ is equal to the number of conjugacy classes of $G$, and their degrees divide $\lvert G\rvert$, $\lvert G:Z(G)\rvert$.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Class Function}
+    \begin{definition}
+        \boldtext{Class functions}
+    \end{definition}
+    \begin{definition}
+        \boldtext{Inner product}
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Schur Orthogonality Relations}
+    Let $\Gamma^{(\alpha)}$ be the irreducible matrix representations (of finite dimensions ${l_\alpha}$) of a group $G$, indexed by some $\alpha,\beta,\dotsc\in\mathbb{N}$, which are unitary, i.e. ${\Gamma^{(\alpha)}(g)}^{\dagger}\Gamma^{(\alpha)}(g)=\mathbb{I}\text{ ,  or , }\sum\limits_{k=1}^{l_\alpha}{\Gamma^{(\alpha)}(g)}_{km}^*\Gamma^{(\alpha)}(g)_{kn}=\delta_{mn},\text{ }\forall\text{ }g\in G$ .
+    \begin{theorem}
+        Matrix elements of finite unitary irreps satisfy the orthogonality relations,
+        \vspace{-0.75em}
+        \begin{align*}
+            \sum\limits_{g\in G}\;{\Gamma^{(\alpha)}(g)}_{mn}^*\;\Gamma^{(\beta)}(g)_{m^\prime n^\prime}\;=\;\frac{\lvert G\rvert}{l_\alpha}\; \delta_{\alpha\beta}\;\delta_{mm^\prime}\;\delta_{nn^\prime}\;\;. 
+        \end{align*}
+    \end{theorem}
+    Due to the vast applicability of the relations, this is also called the \italictext{Great Orthogonality Theorem}.
+\end{frame}
+
+\begin{frame}{Character Table}
+    \begin{definition}
+        
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Exercise 6}
+    \begin{enumerate}
+        \item Argue in favour or opposition:
+        \begin{itemize}
+            \item Character of a representation of a group is a group homomorphism. \textbf{(F)}
+            \item Character of an irrep of an abelian group is a homomorphism. \textbf{(T)}
+        \end{itemize}
+        \item Prove the following:
+        \begin{itemize}
+            \item The character of a representation of a group $G$ maps the identity in $G$ to the dimension of that representation.
+            \item Character of a given representation is same for every member of a class.
+            \item Isomorphic representations have the same character.
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\end{document}
