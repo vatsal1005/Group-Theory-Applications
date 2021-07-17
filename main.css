@@ -1,13 +1,8 @@
  
 /* start css.sty */
-.cmss-10x-x-109{font-size:109%;  font-family: sans-serif;}
 .rm-lmss-10x-x-109{font-size:109%; font-family: sans-serif;}
 .rm-lmss-8x-x-75{font-size:60%; font-family: sans-serif;}
-.rm-lmss-12x-x-120{font-size:144%; font-family: sans-serif;}
 .rm-lmss-8{font-size:80%; font-family: sans-serif;}
-.rm-lmss-12{font-size:120%; font-family: sans-serif;}
-.rm-lmssbx-10x-x-109{font-size:109%; font-family: sans-serif; font-weight: bold;}
-.rm-lmsso-10x-x-109{font-size:109%; font-family: sans-serif; font-style: oblique;}
 .lmmi-10x-x-109{font-size:109%;}
 .lmmi-8{font-size:80%;}
 .lmmi-6{font-size:60%;}
@@ -17,15 +12,19 @@
 .msam-10x-x-109{font-size:109%;}
 .msam-10x-x-80{font-size:80%;}
 .msbm-10x-x-109{font-size:109%;}
+.rm-lmsso-10x-x-109{font-size:109%; font-family: sans-serif; font-style: oblique;}
 .rm-lmsso-8{font-size:80%; font-family: sans-serif; font-style: oblique;}
 .rm-lmsso-8x-x-75{font-size:60%; font-family: sans-serif; font-style: oblique;}
+.rm-lmtt-10x-x-109{font-size:109%; font-family: monospace,monospace;}
+.rm-lmss-12x-x-120{font-size:144%; font-family: sans-serif;}
+.rm-lmss-12{font-size:120%; font-family: sans-serif;}
+.rm-lmssbx-10x-x-109{font-size:109%; font-family: sans-serif; font-weight: bold;}
 .rm-lmss-10{ font-family: sans-serif;}
 .rm-lmssbx-10{ font-family: sans-serif; font-weight: bold;}
 .rm-lmss-8x-x-87{font-size:69%; font-family: sans-serif;}
 .lmsy7-{font-size:70%;}
 .rm-lmsso-10{ font-family: sans-serif; font-style: oblique;}
 .rm-lmsso-8x-x-87{font-size:69%; font-family: sans-serif; font-style: oblique;}
-.rm-lmtt-10x-x-109{font-size:109%; font-family: monospace,monospace;}
 .rm-lmssbo-10x-x-109{font-size:109%; font-family: sans-serif; font-style: oblique; font-weight: bold;}
 .rm-lmssbo-10{ font-family: sans-serif; font-style: oblique; font-weight: bold;}
 .htf-calligraphy {font-family:cursive}
@@ -151,6 +150,25 @@ table.multline, table.multline-star {width:100%;}
 td.gather {text-align:center; }
 table.gather {width:100%;}
 div.gather-star {text-align:center;}
+div.tabular, div.center div.tabular {text-align: center; margin-top:0.5em; margin-bottom:0.5em; }
+table.tabular td p{margin-top:0em;}
+table.tabular {margin-left: auto; margin-right: auto;}
+td p:first-child{ margin-top:0em; }
+td p:last-child{ margin-bottom:0em; }
+div.td00{ margin-left:0pt; margin-right:0pt; }
+div.td01{ margin-left:0pt; margin-right:5pt; }
+div.td10{ margin-left:5pt; margin-right:0pt; }
+div.td11{ margin-left:5pt; margin-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+td.td00{ padding-left:0pt; padding-right:0pt; }
+td.td01{ padding-left:0pt; padding-right:5pt; }
+td.td10{ padding-left:5pt; padding-right:0pt; }
+td.td11{ padding-left:5pt; padding-right:5pt; }
+table[rules] {border-left:solid black 0.4pt; border-right:solid black 0.4pt; }
+.hline hr, .cline hr{ height : 0px; margin:0px; }
+.hline td, .cline td{ padding: 0; }
+.hline hr, .cline hr{border:none;border-top:1px solid black;}
+div.array {text-align:center;}
 span#textcolor4{color:#006699}
 span#textcolor5{color:#E54D99}
 span#textcolor6{color:#006699}
