@@ -14,12 +14,24 @@
 \pgfplotsset{width=10cm,compat=1.9}
 \usepgfplotslibrary{external}
 \tikzexternalize
-\title{Group Theory Applications}
+
+\definecolor{authors}{rgb}{0.1,0.5,0.6}
+\definecolor{titles}{rgb}{0.4,0.2,0.6}
+\definecolor{bolds}{rgb}{0.0,0.4,0.6}
+\definecolor{italics}{rgb}{0.9,0.3,0.6}
+\setbeamercolor{author}{fg=authors}
+\setbeamercolor{subtitle}{fg=titles}
+\setbeamercolor{block title}{fg=titles}
+\newcommand\boldtext[1]{\textcolor{bolds}{\textbf{#1}}}
+\newcommand\italictext[1]{\textcolor{italics}{\textit{#1}}}
+
+\title{\href{https://vatsal1005.github.io/Group-Theory-Applications/main.html}{Group Theory Applications}}
 \subtitle{Summer Improvement Program}
-\author{Vatsal}
-\institute[IIT Bombay]{Department of Chemistry \\
-Indian Institute of Technology Bombay}
-\date{July 5 - 19, 2021}
+\author{\href{https://sites.google.com/iitb.ac.in/vatsal/}{Vatsal}}
+%\setbeamercolor{author}{fg=default}
+\institute[IIT Bombay]{\href{https://www.chem.iitb.ac.in/}{Department of Chemistry} \\
+\href{https://www.iitb.ac.in/}{Indian Institute of Technology Bombay}}
+\date{July 5 - 25, 2021}
 
 \newtheorem{proposition}{Proposition}
 
@@ -27,14 +39,8 @@ Indian Institute of Technology Bombay}
 \newcommand*{\saveenum}{\setcounter{savedenum}{\theenumi}}
 \newcommand*{\resume}{\setcounter{enumi}{\thesavedenum}}
 
-\definecolor{titles}{rgb}{0.4,0.2,0.6}
-\definecolor{bolds}{rgb}{0.0,0.4,0.6}
-\definecolor{italics}{rgb}{0.9,0.3,0.6}
-\setbeamercolor{block title}{fg=titles}
-\newcommand\boldtext[1]{\textcolor{bolds}{\textbf{#1}}}
-\newcommand\italictext[1]{\textcolor{italics}{\textit{#1}}}
-
 \setbeamertemplate{section in toc}{\hspace*{7em}\inserttocsection}
+\setbeamertemplate{subsection in toc}{\small\hspace*{12em}\inserttocsubsection}
 
 \AtBeginSection[]
 {
@@ -222,6 +228,8 @@ Indian Institute of Technology Bombay}
     Example: $(\mathbb{R}\times\mathbb{R},+)$, set of 2-component vectors under vector addition.
 \end{frame}
 
+\subsection{Exercise 1}
+
 \begin{frame}{Exercise 1}
     \begin{enumerate}
         \item Argue in favour or opposition:
@@ -267,13 +275,13 @@ Indian Institute of Technology Bombay}
     \begin{definition}
         Given a vector space $V$ and a set of vectors $S\coloneqq\left\{\mathbf{v}_1,\dots,\mathbf{v}_n\right\}$, the \boldtext{linear span} of set $S$, denoted $\mathbf{span}(S)$, is the set of all finite linear combinations of the elements of $S$, i.e. for vectors $\mathbf{v}_i \in {V}$ and scalars $a_i \in {F}$ (where $F=$ $\mathbb{R}, \mathbb{C},$ etc.), $\mathbf{span}(S)=\left\{\sum\limits_{i=1}^{k}a_i\cdot\mathbf{v}_i\mid\mathbf{v}_i \in {S},\text{ }k\in\mathbb{N}\right\}$.
     \end{definition}
-    \vspace{-0.05em}
+    \vspace{-0.075em}
     The linear span of a set of vectors is therefore a vector space (particularly, a linear subspace $W$ of $V$) and $S\subseteq W$.
-    \vspace{-0.05em}
+    \vspace{-0.075em}
     \begin{lemma}
         $\mathbf{span}(S)$ is the smallest subspace of $V$ that contains the spanning set $S$.
     \end{lemma}
-    \vspace{-0.05em}
+    \vspace{-0.075em}
     $V$ is said to have been spanned by $S$ and $S$ is called a \italictext{generating set} of $V$.
     \begin{definition}
         Smallest possible generating set (or a minimal spanning set) $\{\mathbf{e}_i\}$ is called a \boldtext{basis}, i.e. set $\{\mathbf{e}_i\}$ is a maximal linearly independent set of \italictext{basis vectors}.
@@ -393,6 +401,8 @@ Indian Institute of Technology Bombay}
     \end{theorem}
 \end{frame}
 
+\subsection{Exercise 2}
+
 \begin{frame}{Exercise 2}
     \begin{enumerate}
         \item Prove the following:
@@ -451,7 +461,7 @@ Indian Institute of Technology Bombay}
     \begin{theorem}
         Each row and each column in a Cayley table lists every group element exactly once. This is known as the rearrangement theorem.
     \end{theorem}
-    Caution: A Cayley table doesn't admit associativity as an axiom for its construction. Therefore, any structure (formed by the elements of a set under the defined operations) obtained through the application of the rearrangement theorem must still be explicitly checked for associativity before assuming it to be a group structure.
+    Caution: A Cayley table doesn't admit associativity as an axiom for its construction. Therefore, any structure (formed by the elements of a set under the defined operations) obtained through the application of the rearrangement theorem must still be explicitly checked for associativity before accepting it as a group structure.
 \end{frame}
 
 \begin{frame}{Examples of a Cayley table}
@@ -578,6 +588,8 @@ Indian Institute of Technology Bombay}
         \item[Exercise] Verify that $\bullet$ on the set $G/N$ satisfies the group axioms.
     \end{description}
 \end{frame}
+
+\subsection{Exercise 3}
 
 \begin{frame}{Exercise 3}
     \begin{enumerate}
@@ -779,6 +791,8 @@ Indian Institute of Technology Bombay}
     \end{theorem}
 \end{frame}
 
+\subsection{Exercise 4}
+
 \begin{frame}{Exercise 4}
     \begin{enumerate}
         \item Prove the following:
@@ -978,7 +992,7 @@ Indian Institute of Technology Bombay}
         Irreducible representations are always indecomposable.
     \end{theorem}
     The converse holds for finite-dimensional complex representations of finite groups, but may not be true in general.\\
-    In terms of matrix representations, an irrep is one for which there exists no unitary transformation (similarity transformation through a unitary matrix) that will block diagonalize all the representative matrices simultaneously.\\
+    In terms of matrix representations, an irrep is one for which there exists no unitary transformation (similarity transformation through a unitary matrix) that will block diagonalize all the representative matrices simultaneously (i.e. using the same diagonalizing matrix).\\
     \begin{theorem}
         The tensor product of irreps $(V_1,\rho_1)$ and $(V_2,\rho_2)$ of a group $G$ is not an irrep of $G$, in general. Although it is an irrep of the group $G\times G$.
     \end{theorem}
@@ -1013,17 +1027,30 @@ Indian Institute of Technology Bombay}
     Although, $\rho^*$ need not be isomorphic to $\rho$.
 \end{frame}
 
+\subsection{Exercise 5}
+
 \begin{frame}{Exercise 5}
+    \vspace{-0.1em}
     \begin{enumerate}
+        \vspace{-0.15em}
         \item Argue in favour or opposition:
+        \vspace{-0.1em}
         \begin{itemize}
             \item For a finite order matrix transformation $T:V\xrightarrow{}V$ of a finite dimensional vector space $V$, $T$ is not necessarily diagonalizable. \textbf{(F)}
             \item Commutator $[A,B]$ of finite matrices $A$ and $B$ is traceless. \textbf{(T)}
+            \item For any cyclic group of arbitrary order $n$, there exists a matrix representation in which every representative is a diagonal matrix, with the $n^\text{th}$ roots of unity on the diagonal. \textbf{(T)}
+            \item Every group has a trivial (identity) one-dimensional irrep. \textbf{(T)}
+            \item Kernel of a direct sum $\bigoplus\limits_{i}\rho_i$ of irreps $\rho_i$ is given by $\bigcup\limits_{i}\mathbf{ker}(\rho_i)$. \textbf{(F)}
         \end{itemize}
+        \vspace{-0.45em}
         \item Prove the following:
+        \vspace{-0.1em}
         \begin{itemize}
+            \item Any set of commuting matrices that are separately diagonalizable, need not be simultaneously diagonalizable.
             \item If $(V,\rho)$ is a matrix representation of a finite group $G$ over a finite dimensional vector space $V$, $\rho(g)$ is diagonalizable, $\forall$ $g\in G$.
-            \item For a unitary representation $\rho$ of a group $G$, the representative $\rho^*(g)$ in the dual representation $\rho^*$ is the complex conjugate of $\rho(g)$, $\forall$ $g\in G$. 
+            \item For a group homomorphism $f:H\xrightarrow{}G$ and a trivial representation $\rho:G\xrightarrow{}\mathbf{GL}(V)$, $\rho\circ f$ is also a trivial map.
+            \item For a group epimorphism $f:H\xrightarrow{}G$, a representation $\rho:G\xrightarrow{}\mathbf{GL}(V)$ is trivial if $\rho\circ f$ is a trivial map.
+            \item For a unitary representation $\rho$ of a group $G$, the representative $\rho^*(g)$ in the dual representation $\rho^*$ is the complex conjugate of $\rho(g)$, $\forall$ $g\in G$.
         \end{itemize}
     \end{enumerate}
 \end{frame}
@@ -1065,7 +1092,8 @@ Indian Institute of Technology Bombay}
         \boldtext{Kernel} of a character is defined as $\mathbf{ker}(\chi_\rho)\coloneqq\{g\in G\mid \chi_\rho(g)=\chi_\rho(e)\}$, where $e$ is the identity in $G$.
     \end{definition}
     Clearly, $\mathbf{ker}(\chi_\rho)=\mathbf{ker}(\rho)$, hence, a normal subgroup of $G$.\\
-    A character $\chi_\rho$ is \italictext{faithful} if $\mathbf{ker}(\chi_\rho)$ is trivial.
+    A character $\chi_\rho$ is \italictext{faithful} if $\mathbf{ker}(\chi_\rho)$ is trivial.\\
+    $\mathbf{im}(\chi_\rho)$ does not form a group, in general.
 \end{frame}
 
 \begin{frame}{Character (contd.)}
@@ -1075,7 +1103,8 @@ Indian Institute of Technology Bombay}
     \begin{theorem}
         For a representation $\rho$ of a group $G$, $\chi_{\rho^*}(g)=\chi_{\rho}(g^{-1})=\overline{\chi_{\rho}(g)}$, $\forall$ $g\in G$.
     \end{theorem}
-    Dimension of a representation $\rho$ is called the \italictext{degree} of the character $\chi_\rho$.
+    Dimension of a representation $\rho$ is called the \italictext{degree} of the character $\chi_\rho$.\\
+    A character with unit degree is called a \italictext{linear character}.
     \begin{theorem}
          The number of complex irreducible characters of a group $G$ is equal to the number of conjugacy classes of $G$, and their degrees divide $\lvert G\rvert$, $\lvert G:Z(G)\rvert$.
     \end{theorem}
@@ -1083,15 +1112,56 @@ Indian Institute of Technology Bombay}
 
 \begin{frame}{Class Function}
     \begin{definition}
-        \boldtext{Class functions}
+        A function on a group, which is invariant under an inner automorphism on that group, is called a \boldtext{class function}. Equivalently, it is one which maps all the members of a conjugacy class to the same element in its image.
     \end{definition}
+    \begin{lemma}
+        Character of a representation of a group $G$ is always a class function on $G$.
+    \end{lemma}
+    \begin{proposition}
+        The set of class functions $f_i:G\xrightarrow{}F$ on a group $G$ forms a vector space over $F$, whose dimension equals the number of conjugacy classes in $G$.
+    \end{proposition}
+\end{frame}
+
+\begin{frame}{Inner Product of class functions}
     \begin{definition}
-        \boldtext{Inner product}
+        The vector space $L^2(G)$ of complex-valued class functions $f_i$ on a group $G$ admits an \boldtext{inner product} defined by,
+        \vspace{-0.75em}
+        \begin{align*}
+            \braket{f_j}{f_i}\equiv\langle f_i,f_j\rangle\coloneqq \frac{1}{|G|}\sum\limits_{g\in G}f_i(g)f_j(g^{-1})=\frac{1}{|G|} \sum\limits_{g\in G}f_i(g)\overline{f_j(g)}\;\;. 
+        \end{align*}
     \end{definition}
+    \begin{proposition}
+        The complete set of complex irreducible characters $\chi_i$ of a group $G$ forms an orthonormal set with respect to the inner product of complex class functions on $G$, i.e. $\braket{\chi_j}{\chi_i}=\langle\chi_i,\chi_j\rangle=\delta_{ij}$.
+    \end{proposition}
+    \begin{theorem}
+        The complete set of complex irreducible characters $\chi_i$ of a group $G$ spans the inner product space $L^2(G)$ of complex class functions on $G$, hence forming an orthonormal basis of the same.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{Inner Product of class functions (contd.)}
+    \begin{corollary}
+        Every class function $f$ on a group $G$ can be expressed as some linear combination of the irreducible characters $\chi_i$ of $G$, that is,
+        \vspace{-1em}
+        \begin{align*}
+            f=\sum\limits_{i=1}^{k} c_i {\chi}_i,\text{ }c_i\in\mathbb{C},\text{ }k\in\mathbb{N}\;\;. 
+        \end{align*}
+    \end{corollary}
+    \vspace{-0.35em}
+    \begin{corollary}
+        $\text{The character $\chi$ of a complex representation is irreducible iff } \langle\chi,\chi\rangle=1$.
+    \end{corollary}
+    \vspace{-0.35em}
+    \begin{proposition}[Orthogonal projection formula]
+        Multiplicity of an irrep $\rho_i$ with character $\chi_i$, in a direct sum decomposition of a representation $\rho=\bigoplus\limits_{i}\rho_i$ with character $\chi_{\rho}$, is given by $n_i\coloneqq\langle\chi_{\rho},\chi_i\rangle$.
+    \end{proposition}
+    \vspace{-0.35em}
+    \begin{lemma}
+        A class function $f$ on a group $G$ is the character of a representation of $G$ iff for every irreducible character $\chi_i$ of $G$, $\langle f,\chi_{i}\rangle$ is a non-negative integer.
+    \end{lemma}
 \end{frame}
 
 \begin{frame}{Schur Orthogonality Relations}
-    Let $\Gamma^{(\alpha)}$ be the irreducible matrix representations (of finite dimensions ${l_\alpha}$) of a group $G$, indexed by some $\alpha,\beta,\dotsc\in\mathbb{N}$, which are unitary, i.e. ${\Gamma^{(\alpha)}(g)}^{\dagger}\Gamma^{(\alpha)}(g)=\mathbb{I}\text{ ,  or , }\sum\limits_{k=1}^{l_\alpha}{\Gamma^{(\alpha)}(g)}_{km}^*\Gamma^{(\alpha)}(g)_{kn}=\delta_{mn},\text{ }\forall\text{ }g\in G$ .
+    Let $\Gamma^{(\alpha)}$ be the irreducible matrix representations (of finite dimensions ${l_\alpha}$) of a group $G$, indexed serially by some $\alpha,\beta,\dotsc\in\mathbb{N}$, which are unitary, i.e. ${\Gamma^{(\alpha)}(g)}^{\dagger}\Gamma^{(\alpha)}(g)=\mathbb{I}\text{ ,  or , }\sum\limits_{k=1}^{l_\alpha}{\Gamma^{(\alpha)}(g)}_{km}^*\Gamma^{(\alpha)}(g)_{kn}=\delta_{mn},\text{ }\forall\text{ }g\in G$ .
     \begin{theorem}
         Matrix elements of finite unitary irreps satisfy the orthogonality relations,
         \vspace{-0.75em}
@@ -1099,27 +1169,163 @@ Indian Institute of Technology Bombay}
             \sum\limits_{g\in G}\;{\Gamma^{(\alpha)}(g)}_{mn}^*\;\Gamma^{(\beta)}(g)_{m^\prime n^\prime}\;=\;\frac{\lvert G\rvert}{l_\alpha}\; \delta_{\alpha\beta}\;\delta_{mm^\prime}\;\delta_{nn^\prime}\;\;. 
         \end{align*}
     \end{theorem}
-    Due to the vast applicability of the relations, this is also called the \italictext{Great Orthogonality Theorem}.
+    Due to the vast applicability of these relations, this is also called the \italictext{Great Orthogonality Theorem}.
+    \begin{corollary}
+        If $p$ is the number of distinct conjugacy classes in $G$, $\sum\limits_{\alpha=1}^{p} l_\alpha^2=\lvert G\rvert$.
+    \end{corollary}
 \end{frame}
 
 \begin{frame}{Character Table}
     \begin{definition}
-        
+        A \boldtext{character table} for a group is a square table with its rows labelled by the complex irreducible characters of the group and columns by the (corresponding) conjugacy classes of the group. 
     \end{definition}
+    Choosing a representative element $\mathcal{C}_k$ from each of the distinct conjugacy classes ($p$ in number) of a finite group $G$, we have,
+    \begin{theorem}
+        \italictext{Row orthogonality} (sum over conjugacy classes):
+        \vspace{-0.75em}
+        \begin{align*}
+            \sum\limits_{k=1}^{p}\,\lvert\textup{cl}_G(\mathcal{C}_k)\rvert\,\chi_i(\mathcal{C}_k)\,\overline{\chi_j(\mathcal{C}_k)}\,=\,\lvert G\rvert\,\delta_{ij} \,\,,
+        \end{align*}
+        \italictext{Column orthogonality} (sum over irreducible characters):
+        \vspace{-0.75em}
+        \begin{align*}
+            \sum\limits_{i=1}^{p}\,\chi_i(\mathcal{C}_k)\,\overline{\chi_i(\mathcal{C}_l)}\,=\,\frac{\lvert G\rvert} {\lvert\textup{cl}_G(\mathcal{C}_k) \rvert}\,\delta_{kl} \;.
+        \end{align*}
+    \end{theorem}
 \end{frame}
 
+\begin{frame}{Character Table (contd.)}
+    \begin{corollary}
+        For an irreducible character $\chi_i$, other than that of trivial (identity) irrep,
+        \vspace{-0.75em}
+        \begin{align*}
+            \sum\limits_{k=1}^{p}\,\lvert\textup{cl}_G (\mathcal{C}_k)\rvert\,\chi_i(\mathcal{C}_k)\,=\,0 \;\;.
+        \end{align*}
+    \end{corollary}
+    Normal subgroups can be directly read off a character table. Any normal subgroup is the intersection of kernels of some irreducible characters.
+    \begin{proposition}
+        Given the complete set $\textup{Irr}(G)$ of complex irreducible characters $\chi_i$ of a group $G$, a set $N$ forms a normal subgroup of $G$ iff there exists a subset $S$ of $\textup{Irr}(G)$ such that $N=\{g\in G\mid\chi_i(g)=\chi_i(e_G)$ $\forall$ $\chi_i\in S\subseteq\textup{Irr}(G)\}$.
+    \end{proposition}
+    \begin{corollary}
+        A group $G$ is simple iff $\mathbf{ker}(\chi_i) = \{e_G\}$ for all its irreducible characters $\chi_i$.
+    \end{corollary}
+\end{frame}
+
+\begin{frame}{Examples of a character table}
+    \centering
+    \begin{description}
+        \item[Exercise] Figure out the normal subgroups for the following:
+    \end{description}
+    \vspace{0.1em}
+    \centering
+    $\text{C\textsubscript{2}}=\langle\{a\}\rangle$, $a^2=e$
+    \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|}
+            \hline\textbf{C\textsubscript{2}} & \textbf{\textit{e}} & \textbf{\textit{a}} \\ \hline
+            $\boldsymbol{\chi_1}$ & $1$ & $1$ \\ \hline
+            $\boldsymbol{\chi_2}$ & $1$ & $-1$ \\ \hline
+        \end{tabular}
+        \caption{C\textsubscript{2}, cyclic group of order 2}
+        %\label{tab:my_label}
+    \end{table}
+    \vspace{-0.4em}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering
+        $\text{C\textsubscript{4}}=\langle\{a\}\rangle$, $a^4=e$
+        \vspace{-0.2em}
+        \begin{table}[]
+            \centering
+            \setlength\extrarowheight{3pt}
+            \begin{tabular}{|c|c|c|c|c|}
+                \hline\textbf{C\textsubscript{4}} & \textbf{\textit{e}} & \textbf{\textit{a}} & \textbf{\textit{a\textsuperscript{2}}} & \textbf{\textit{a\textsuperscript{3}}} \\ \hline
+                $\boldsymbol{\chi_1}$ & $1$ & $1$ & $1$ & $1$ \\ \hline
+                $\boldsymbol{\chi_2}$ & $1$ & $-1$ & $1$ & $-1$ \\ \hline
+                $\boldsymbol{\chi_3}$ & $1$ & $i$ & $-1$ & $-i$ \\ \hline
+                $\boldsymbol{\chi_4}$ & $1$ & $-i$ & $-1$ & $i$ \\ \hline
+            \end{tabular}
+            \caption{C\textsubscript{4}, cyclic group of order 4}
+            %\label{tab:my_label}
+        \end{table}
+        \column{0.5\textwidth}
+        \centering
+        $\text{V}=\langle\{a,b\}\rangle$, $a^2=e=b^2$, $ab=ba$
+        \vspace{-0.2em}
+        \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline\textbf{V} & \textbf{\textit{e}} & \textbf{\textit{a}} & \textbf{\textit{b}} & \textbf{\textit{ab}} \\ \hline
+            $\boldsymbol{\chi_1}$ & $1$ & $1$ & $1$ & $1$ \\ \hline
+            $\boldsymbol{\chi_2}$ & $1$ & $1$ & $-1$ & $-1$ \\ \hline
+            $\boldsymbol{\chi_3}$ & $1$ & $-1$ & $1$ & $-1$ \\ \hline
+            $\boldsymbol{\chi_4}$ & $1$ & $-1$ & $-1$ & $1$ \\ \hline
+        \end{tabular}
+        \caption{V, Klein four-group}
+        %\label{tab:my_label}
+    \end{table}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Examples of a character table (contd.)}
+    \centering
+    $\text{S\textsubscript{3} $\cong$ D\textsubscript{3}}=\langle\{a,b\}\rangle$, $a^3=e=b^2$, $a^{-1}b=ba$
+    \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|c|}
+            \hline\textbf{S\textsubscript{3} $\cong$ D\textsubscript{3}} & \textbf{\textit{e}} & \textbf{\{\textit{a}, \textit{a\textsuperscript{2}}\}} & \textbf{\{\textit{b}, \textit{ab}, \textit{a\textsuperscript{2}b}\}} \\ \hline
+            $\boldsymbol{\chi_1}$ & $1$ & $1$ & $1$ \\ \hline
+            $\boldsymbol{\chi_2}$ & $1$ & $1$ & $-1$ \\ \hline
+            $\boldsymbol{\chi_3}$ & $2$ & $-1$ & $0$ \\ \hline
+        \end{tabular}
+        \caption{S\textsubscript{3}, symmetric group of permutations of 3 objects}
+        %\label{tab:my_label}
+    \end{table}
+    \vspace{-0.5em}
+    \centering
+    $\text{C\textsubscript{5v} $\cong$ D\textsubscript{5}}=\langle\{a,b\}\rangle$, $a^5=e=b^2$, $a^{-1}b=ba$
+    \begin{table}[]
+        \centering
+        \setlength\extrarowheight{3pt}
+        \begin{tabular}{|c|c|c|c|c|}
+            \hline\textbf{C\textsubscript{5v} $\cong$ D\textsubscript{5}} & \textbf{\textit{e}} & \textbf{\{\textit{a}, \textit{a\textsuperscript{4}}\}} & \textbf{\{\textit{a\textsuperscript{2}}, \textit{a\textsuperscript{3}}\}} & \textbf{\{\textit{b}, \textit{ab}, \textit{a\textsuperscript{2}b}, \textit{a\textsuperscript{3}b}, \textit{a\textsuperscript{4}b}\}} \\ \hline
+            $\boldsymbol{\chi_1}$ & $1$ & $1$ & $1$ & $1$ \\ \hline
+            $\boldsymbol{\chi_2}$ & $1$ & $1$ & $1$ & $-1$ \\ \hline
+            $\boldsymbol{\chi_3}$ & $2$ & $2\cos(2\pi/5)$ & $2\cos(4\pi/5)$ & $0$ \\ \hline
+            $\boldsymbol{\chi_4}$ & $2$ & $2\cos(4\pi/5)$ & $2\cos(2\pi/5)$ & $0$ \\ \hline
+        \end{tabular}
+        \caption{C\textsubscript{5v}, pyramidal group of symmetries of a regular 5-sided pyramid}
+        %\label{tab:my_label}
+    \end{table}
+\end{frame}
+
+\subsection{Exercise 6}
+
 \begin{frame}{Exercise 6}
+    \vspace{-0.2em}
     \begin{enumerate}
         \item Argue in favour or opposition:
+        \vspace{-0.05em}
         \begin{itemize}
             \item Character of a representation of a group is a group homomorphism. \textbf{(F)}
             \item Character of an irrep of an abelian group is a homomorphism. \textbf{(T)}
+            \item $\forall$ $g_1,g_2\in G$, characters $\chi_i$ of representations $\rho_i$ of a group $G$ pairwise satisfy, $\chi_{i}(g_1)= \chi_{j}(g_2)\iff\textup{cl}_G(g_1)=\textup{cl}_G(g_2)$. \textbf{(F)}
+            \item A group $G$ is abelian iff each irreducible character of $G$ is linear. \textbf{(T)}
+            \item Two groups are isomorphic iff they share the same character table. \textbf{(F)}
         \end{itemize}
         \item Prove the following:
+        \vspace{-0.05em}
         \begin{itemize}
             \item The character of a representation of a group $G$ maps the identity in $G$ to the dimension of that representation.
             \item Character of a given representation is same for every member of a class.
             \item Isomorphic representations have the same character.
+            \item For a complex one-dimensional representation $\rho:G\xrightarrow{}\mathbf{GL}(1,\mathbb{C})$, the character $\chi_\rho:G\xrightarrow{}\mathbb{C}$ maps each element of $G$ to some root of unity. 
+            \item For a representation $\rho:G\xrightarrow{} \mathbf{GL}(V)$, $\langle \rho^*(g)(\mathbf{v}^*),\rho(g)(\mathbf{v})\rangle= \langle \mathbf{v}^*,\mathbf{v}\rangle$, $\forall\text{ }g\in G,$ $\mathbf{v}\in V,$ $\mathbf{v}^*\in V^*$.
+            \item There are four distinct $4\times4$ character tables possible. \textbf{Hint}: Construct the fourth table possible (three have been provided in the examples).
+            \item Construct character tables for $\text{D}_4=\langle a,b\mid a^4=e=b^2,a^{-1}b=ba\rangle$ and $\text{Q}=\langle a,b\mid a^4=e,b^2=a^2,a^{-1}b=ba\rangle$ groups (each of order 8).
         \end{itemize}
     \end{enumerate}
 \end{frame}
