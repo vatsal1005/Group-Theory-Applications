@@ -19,14 +19,23 @@
 .rm-lmss-12x-x-120{font-size:144%; font-family: sans-serif;}
 .rm-lmss-12{font-size:120%; font-family: sans-serif;}
 .rm-lmssbx-10x-x-109{font-size:109%; font-family: sans-serif; font-weight: bold;}
+.rm-lmssbx-10x-x-80{font-size:80%; font-family: sans-serif; font-weight: bold;}
 .rm-lmss-10{ font-family: sans-serif;}
 .rm-lmssbx-10{ font-family: sans-serif; font-weight: bold;}
 .rm-lmss-8x-x-87{font-size:69%; font-family: sans-serif;}
+.lmmi-7{font-size:70%;}
 .lmsy7-{font-size:70%;}
 .rm-lmsso-10{ font-family: sans-serif; font-style: oblique;}
 .rm-lmsso-8x-x-87{font-size:69%; font-family: sans-serif; font-style: oblique;}
 .rm-lmssbo-10x-x-109{font-size:109%; font-family: sans-serif; font-style: oblique; font-weight: bold;}
 .rm-lmssbo-10{ font-family: sans-serif; font-style: oblique; font-weight: bold;}
+.lmmib-10x-x-109{font-size:109%;font_weight:bold;}
+.lmmib-10x-x-109{font_weight:bold;}
+.lmmib-10x-x-109{font_weight:bold;}
+.lmmib-10x-x-109{font_weight:bold;}
+.lmmib-10x-x-109{font_weight:bold;}
+.lmmib-10x-x-109{font_weight:bold;}
+.cmsy-10x-x-109{font-size:109%;}
 .htf-calligraphy {font-family:cursive}
 .htf-calligraphy-bold {font-family:cursive ; font-weight: bold; }
 p{margin-top:0;margin-bottom:0}
@@ -361,8 +370,65 @@ span#textcolor142{color:#E54D99}
 span#textcolor143{color:#006699}
 span#textcolor144{color:#E54D99}
 span#textcolor145{color:#E54D99}
-span#textcolor146{color:#006699}
+span#textcolor146{color:#E54D99}
 span#textcolor147{color:#006699}
-span#textcolor148{color:#E54D99}
+span#textcolor149{color:#E54D99}
+span#textcolor150{color:#006699}
+span#textcolor151{color:#E54D99}
+span#textcolor152{color:#E54D99}
+#TBL-5 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-5{border-collapse:collapse;}
+#TBL-5 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-5{border-collapse:collapse;}
+#TBL-5 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-5{border-collapse:collapse;}
+#TBL-5 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-5{border-collapse:collapse;}
+#TBL-6 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-6{border-collapse:collapse;}
+#TBL-6 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-6{border-collapse:collapse;}
+#TBL-6 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-6{border-collapse:collapse;}
+#TBL-6 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-6{border-collapse:collapse;}
+#TBL-6 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-6{border-collapse:collapse;}
+#TBL-6 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-6{border-collapse:collapse;}
+#TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-7{border-collapse:collapse;}
+#TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-7{border-collapse:collapse;}
+#TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-7{border-collapse:collapse;}
+#TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-7{border-collapse:collapse;}
+#TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-7{border-collapse:collapse;}
+#TBL-7 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-7{border-collapse:collapse;}
+#TBL-8 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-8{border-collapse:collapse;}
+#TBL-8 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-8{border-collapse:collapse;}
+#TBL-8 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-8{border-collapse:collapse;}
+#TBL-8 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-8{border-collapse:collapse;}
+#TBL-8 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-8{border-collapse:collapse;}
+#TBL-9 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-9{border-collapse:collapse;}
+#TBL-9 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-9{border-collapse:collapse;}
+#TBL-9 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-9{border-collapse:collapse;}
+#TBL-9 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-9{border-collapse:collapse;}
+#TBL-9 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-9{border-collapse:collapse;}
+#TBL-9 colgroup{border-left: 1px solid black;border-right:1px solid black;}
+#TBL-9{border-collapse:collapse;}
 /* end css.sty */
 
